@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://biyc0cm3wpghd"]
+
+[ext_resource type="Script" uid="uid://c8oym2g12yvay" path="res://entity/character/character.gd" id="1_b6my0"]
+[ext_resource type="Texture2D" uid="uid://mufoynyv5som" path="res://icon.svg" id="2_pn670"]
+[ext_resource type="Script" uid="uid://betavriq62lcd" path="res://entity/components/component.gd" id="2_tfwrq"]
+[ext_resource type="Script" uid="uid://2ma8n0pugcxl" path="res://entity/components/ability.gd" id="4_ceslx"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/movable.gd" id="5_a4ask"]
+[ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://entity/components/health.gd" id="5_jgacm"]
+[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://entity/components/creature.gd" id="6_a4ask"]
+
+[sub_resource type="Resource" id="Resource_hfuav"]
+script = ExtResource("4_ceslx")
+metadata/_custom_type_script = "uid://2ma8n0pugcxl"
+
+[sub_resource type="Resource" id="Resource_agnga"]
+script = ExtResource("5_jgacm")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[sub_resource type="Resource" id="Resource_y6428"]
+script = ExtResource("5_a4ask")
+metadata/_custom_type_script = "uid://34l10k1vdopw"
+
+[sub_resource type="Resource" id="Resource_heg3v"]
+script = ExtResource("6_a4ask")
+metadata/_custom_type_script = "uid://bxjib3hd2rsas"
+
+[node name="Character" type="Node2D" unique_id=1901295413]
+script = ExtResource("1_b6my0")
+components__ = Array[ExtResource("2_tfwrq")]([SubResource("Resource_hfuav"), SubResource("Resource_agnga"), SubResource("Resource_y6428"), SubResource("Resource_heg3v")])
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2106769502]
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_pn670")
+expand_mode = 1
+stretch_mode = 5

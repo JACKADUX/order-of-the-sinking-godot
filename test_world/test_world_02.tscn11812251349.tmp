@@ -1,0 +1,46 @@
+[gd_scene format=4 uid="uid://bfvy8ww8g25bp"]
+
+[ext_resource type="Script" uid="uid://bwgn6ygl6p1bh" path="res://test_world/input_manager.gd" id="1_jr6n0"]
+[ext_resource type="Script" uid="uid://bhjntgnbgficw" path="res://test_world/tilemap_manager.gd" id="2_l17wg"]
+[ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="3_l6dab"]
+[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://test_world/wall/wall_tile_map_layer.tscn" id="4_jug2e"]
+[ext_resource type="Script" uid="uid://03whukfkr1y4" path="res://entity/entity_manager.gd" id="5_l6dab"]
+[ext_resource type="PackedScene" uid="uid://biyc0cm3wpghd" path="res://entity/character/character.tscn" id="5_l17wg"]
+[ext_resource type="PackedScene" uid="uid://dm0unojkgrjy8" path="res://entity/enemy/enemy.tscn" id="6_l17wg"]
+[ext_resource type="PackedScene" uid="uid://caklk028v5vpf" path="res://entity/items/rock.tscn" id="8_l6dab"]
+
+[node name="TestWorld02" type="Node2D" unique_id=253937265]
+
+[node name="InputManager" type="Node" parent="." unique_id=686900598 node_paths=PackedStringArray("entity_manager", "tilemap_manager")]
+script = ExtResource("1_jr6n0")
+entity_manager = NodePath("../EntityManager")
+tilemap_manager = NodePath("../TileMapManager")
+
+[node name="TileMapManager" type="Node" parent="." unique_id=771017993 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
+script = ExtResource("2_l17wg")
+ground_tilemap = NodePath("GroundTileMapLayer")
+wall_tilemap = NodePath("WallTileMapLayer")
+
+[node name="GroundTileMapLayer" type="TileMapLayer" parent="TileMapManager" unique_id=1956547349]
+show_behind_parent = true
+z_index = -1
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAADAAYAAAACAAAAAAAEAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAACAAAAAAAGAAcAAAACAAAAAAAFAAcAAAACAAAAAAAEAAcAAAACAAAAAAADAAcAAAACAAAAAAA=")
+tile_set = ExtResource("3_l6dab")
+
+[node name="WallTileMapLayer" parent="TileMapManager" unique_id=845189614 instance=ExtResource("4_jug2e")]
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAIAAAAAAAEAAgABAAIAAAAAAAIAAgABAAIAAAAAAAMAAgABAAIAAAAAAAQAAgABAAIAAAABAAAAAgABAAIAAAACAAAAAgABAAIAAAADAAAAAgABAAIAAAAEAAAAAgABAAIAAAAFAAAAAgABAAIAAAAGAAAAAgABAAIAAAAHAAAAAgABAAIAAAAIAAAAAgABAAIAAAAJAAAAAgABAAIAAAAJAAEAAgABAAIAAAAJAAIAAgABAAIAAAAJAAMAAgABAAIAAAAJAAQAAgABAAIAAAAJAAUAAgABAAIAAAAJAAYAAgABAAIAAAAJAAcAAgABAAIAAAAJAAgAAgABAAIAAAAJAAkAAgABAAIAAAAIAAkAAgABAAIAAAAHAAkAAgABAAIAAAAGAAkAAgABAAIAAAAFAAkAAgABAAIAAAAEAAkAAgABAAIAAAADAAkAAgABAAIAAAACAAkAAgABAAIAAAABAAkAAgABAAIAAAAAAAkAAgABAAIAAAAAAAUAAgABAAIAAAAAAAYAAgABAAIAAAAAAAcAAgABAAIAAAAAAAgAAgABAAIAAAA=")
+
+[node name="EntityManager" type="Node" parent="." unique_id=322074679]
+script = ExtResource("5_l6dab")
+
+[node name="Character" parent="EntityManager" unique_id=1901295413 instance=ExtResource("5_l17wg")]
+position = Vector2(96, 128)
+
+[node name="Enemy" parent="EntityManager" unique_id=71826711 instance=ExtResource("6_l17wg")]
+
+[node name="Rock" parent="EntityManager" unique_id=632925535 instance=ExtResource("8_l6dab")]
+position = Vector2(64, 64)
+
+[node name="Rock2" parent="EntityManager" unique_id=988966462 instance=ExtResource("8_l6dab")]
+position = Vector2(192, 64)

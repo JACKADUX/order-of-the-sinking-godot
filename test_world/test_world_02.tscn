@@ -1,0 +1,96 @@
+[gd_scene format=4 uid="uid://bfvy8ww8g25bp"]
+
+[ext_resource type="Script" uid="uid://bwgn6ygl6p1bh" path="res://test_world/input_manager.gd" id="1_jr6n0"]
+[ext_resource type="Script" uid="uid://bhjntgnbgficw" path="res://test_world/tilemap_manager.gd" id="2_l17wg"]
+[ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="3_l6dab"]
+[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://test_world/wall/wall_tile_map_layer.tscn" id="4_jug2e"]
+[ext_resource type="Script" uid="uid://03whukfkr1y4" path="res://entity/entity_manager.gd" id="5_l6dab"]
+[ext_resource type="PackedScene" uid="uid://dm0unojkgrjy8" path="res://entity/enemy/enemy.tscn" id="6_l17wg"]
+[ext_resource type="Script" uid="uid://cnm1axp2r1jgt" path="res://entity/mechanism/enemy_counter.gd" id="8_46204"]
+[ext_resource type="PackedScene" uid="uid://caklk028v5vpf" path="res://entity/items/rock.tscn" id="8_l6dab"]
+[ext_resource type="Script" uid="uid://betavriq62lcd" path="res://entity/components/component.gd" id="11_wdnem"]
+[ext_resource type="PackedScene" uid="uid://b88h26t1a3ogf" path="res://entity/character/character_1.tscn" id="11_x2vco"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/movable.gd" id="12_0e4s7"]
+[ext_resource type="PackedScene" uid="uid://dd6swmid5y8ha" path="res://entity/items/grass.tscn" id="12_heg3v"]
+[ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://entity/components/health.gd" id="13_6g5it"]
+[ext_resource type="PackedScene" uid="uid://vkrlpfvcrnl2" path="res://entity/character/character_6.tscn" id="13_heg3v"]
+[ext_resource type="PackedScene" uid="uid://ceyxearq1tjj5" path="res://entity/mechanism/pressure_plate.tscn" id="13_ikxlb"]
+[ext_resource type="PackedScene" uid="uid://bumfm7xfd5hwq" path="res://entity/mechanism/door.tscn" id="14_46204"]
+
+[sub_resource type="Resource" id="Resource_0qn5b"]
+script = ExtResource("12_0e4s7")
+metadata/_custom_type_script = "uid://34l10k1vdopw"
+
+[sub_resource type="Resource" id="Resource_fv2rj"]
+resource_local_to_scene = true
+script = ExtResource("13_6g5it")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[sub_resource type="Resource" id="Resource_2gs52"]
+resource_local_to_scene = true
+script = ExtResource("13_6g5it")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[node name="TestWorld02" type="Node2D" unique_id=253937265]
+
+[node name="InputManager" type="Node" parent="." unique_id=686900598 node_paths=PackedStringArray("entity_manager", "tilemap_manager")]
+script = ExtResource("1_jr6n0")
+entity_manager = NodePath("../EntityManager")
+tilemap_manager = NodePath("../TileMapManager")
+
+[node name="TileMapManager" type="Node" parent="." unique_id=771017993 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
+script = ExtResource("2_l17wg")
+ground_tilemap = NodePath("GroundTileMapLayer")
+wall_tilemap = NodePath("WallTileMapLayer")
+
+[node name="GroundTileMapLayer" type="TileMapLayer" parent="TileMapManager" unique_id=1956547349]
+show_behind_parent = true
+z_index = -1
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAADAAYAAAACAAAAAAAEAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAACAAAAAAAGAAcAAAACAAAAAAAFAAcAAAACAAAAAAAEAAcAAAACAAAAAAADAAcAAAACAAAAAAA=")
+tile_set = ExtResource("3_l6dab")
+
+[node name="WallTileMapLayer" parent="TileMapManager" unique_id=845189614 instance=ExtResource("4_jug2e")]
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAIAAAAAAAEAAgABAAIAAAAAAAIAAgABAAIAAAAAAAMAAgABAAIAAAAAAAQAAgABAAIAAAABAAAAAgABAAIAAAACAAAAAgABAAIAAAADAAAAAgABAAIAAAAEAAAAAgABAAIAAAAFAAAAAgABAAIAAAAGAAAAAgABAAIAAAAHAAAAAgABAAIAAAAIAAAAAgABAAIAAAAJAAAAAgABAAIAAAAJAAEAAgABAAIAAAAJAAIAAgABAAIAAAAJAAMAAgABAAIAAAAJAAQAAgABAAIAAAAJAAUAAgABAAIAAAAJAAYAAgABAAIAAAAJAAcAAgABAAIAAAAJAAgAAgABAAIAAAAJAAkAAgABAAIAAAAIAAkAAgABAAIAAAAHAAkAAgABAAIAAAAGAAkAAgABAAIAAAAFAAkAAgABAAIAAAAEAAkAAgABAAIAAAADAAkAAgABAAIAAAACAAkAAgABAAIAAAABAAkAAgABAAIAAAAAAAkAAgABAAIAAAAAAAUAAgABAAIAAAAAAAYAAgABAAIAAAAAAAcAAgABAAIAAAAAAAgAAgABAAIAAAA=")
+
+[node name="EntityManager" type="Node2D" parent="." unique_id=965366357]
+y_sort_enabled = true
+script = ExtResource("5_l6dab")
+
+[node name="Door" parent="EntityManager" unique_id=1682633432 instance=ExtResource("14_46204")]
+position = Vector2(160, 96)
+
+[node name="PressurePlate" parent="EntityManager/Door" unique_id=1969265763 instance=ExtResource("13_ikxlb")]
+position = Vector2(-64, 0)
+
+[node name="PressurePlate2" parent="EntityManager/Door" unique_id=2124776216 instance=ExtResource("13_ikxlb")]
+position = Vector2(-32, 32)
+
+[node name="Door2" parent="EntityManager" unique_id=1875842035 instance=ExtResource("14_46204")]
+modulate = Color(0.921875, 0, 1, 1)
+position = Vector2(224, 192)
+
+[node name="EnemyCounter" type="Node2D" parent="EntityManager/Door2" unique_id=1135218560]
+script = ExtResource("8_46204")
+metadata/_custom_type_script = "uid://cnm1axp2r1jgt"
+
+[node name="Enemy" parent="EntityManager" unique_id=71826711 instance=ExtResource("6_l17wg")]
+position = Vector2(192, 128)
+
+[node name="Rock" parent="EntityManager" unique_id=632925535 instance=ExtResource("8_l6dab")]
+position = Vector2(96, 96)
+components__ = Array[ExtResource("11_wdnem")]([SubResource("Resource_0qn5b"), SubResource("Resource_fv2rj")])
+
+[node name="Rock2" parent="EntityManager" unique_id=988966462 instance=ExtResource("8_l6dab")]
+position = Vector2(160, 96)
+components__ = Array[ExtResource("11_wdnem")]([SubResource("Resource_0qn5b"), SubResource("Resource_2gs52")])
+
+[node name="MorphGrass" parent="EntityManager" unique_id=859745245 instance=ExtResource("12_heg3v")]
+position = Vector2(64, 96)
+
+[node name="Character1" parent="EntityManager" unique_id=1901295413 instance=ExtResource("11_x2vco")]
+position = Vector2(128, 128)
+active = false
+
+[node name="Character6" parent="EntityManager" unique_id=501712712 instance=ExtResource("13_heg3v")]
+position = Vector2(64, 64)

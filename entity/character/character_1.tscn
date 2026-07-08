@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b88h26t1a3ogf"]
+
+[ext_resource type="PackedScene" uid="uid://biyc0cm3wpghd" path="res://entity/character/character.tscn" id="1_wui6i"]
+[ext_resource type="Script" uid="uid://betavriq62lcd" path="res://entity/components/component.gd" id="2_toad1"]
+[ext_resource type="Script" uid="uid://2ma8n0pugcxl" path="res://entity/components/ability.gd" id="3_h2vh0"]
+[ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://entity/components/health.gd" id="4_w6c1l"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/movable.gd" id="5_k28yv"]
+[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://entity/components/creature.gd" id="6_h2vh0"]
+
+[sub_resource type="Resource" id="Resource_gq8hv"]
+script = ExtResource("3_h2vh0")
+type = 1
+metadata/_custom_type_script = "uid://2ma8n0pugcxl"
+
+[sub_resource type="Resource" id="Resource_p6srl"]
+script = ExtResource("4_w6c1l")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[sub_resource type="Resource" id="Resource_1s5c5"]
+script = ExtResource("5_k28yv")
+metadata/_custom_type_script = "uid://34l10k1vdopw"
+
+[sub_resource type="Resource" id="Resource_w6c1l"]
+script = ExtResource("6_h2vh0")
+metadata/_custom_type_script = "uid://bxjib3hd2rsas"
+
+[node name="Character1" unique_id=1901295413 instance=ExtResource("1_wui6i")]
+components__ = Array[ExtResource("2_toad1")]([SubResource("Resource_gq8hv"), SubResource("Resource_p6srl"), SubResource("Resource_1s5c5"), SubResource("Resource_w6c1l")])
+
+[node name="TextureRect" parent="." index="0" unique_id=2106769502]
+modulate = Color(0.8984375, 0.4071045, 0.4071045, 1)

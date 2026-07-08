@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dw81v00233uvy"]
+
+[ext_resource type="Script" uid="uid://jku1ih45m1ux" path="res://test_world/gate_button.gd" id="1_u524n"]
+[ext_resource type="Texture2D" uid="uid://2ppp2815qifv" path="res://assets/aesprit/Sprite-0001.png" id="2_8jddy"]
+[ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="2_o4r7o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4r7o"]
+resource_local_to_scene = true
+atlas = ExtResource("2_8jddy")
+region = Rect2(0, 32, 32, 32)
+script = ExtResource("2_o4r7o")
+y = 1
+metadata/_custom_type_script = "uid://08jwjcj2tn1a"
+
+[node name="GateButton" type="Node2D" unique_id=867742368]
+script = ExtResource("1_u524n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2011791942]
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_o4r7o")
+centered = false

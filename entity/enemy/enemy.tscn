@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dm0unojkgrjy8"]
+
+[ext_resource type="Script" uid="uid://cl1p1i3udss6x" path="res://entity/enemy/enemy.gd" id="1_tlndo"]
+[ext_resource type="Script" uid="uid://betavriq62lcd" path="res://entity/components/component.gd" id="2_0qn5b"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/movable.gd" id="3_j14xv"]
+[ext_resource type="Texture2D" uid="uid://mufoynyv5som" path="res://icon.svg" id="4_0p2mk"]
+[ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://entity/components/health.gd" id="4_7mx5f"]
+[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://entity/components/creature.gd" id="5_gevl6"]
+
+[sub_resource type="Resource" id="Resource_tlndo"]
+script = ExtResource("3_j14xv")
+metadata/_custom_type_script = "uid://34l10k1vdopw"
+
+[sub_resource type="Resource" id="Resource_dpn1w"]
+script = ExtResource("4_7mx5f")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[sub_resource type="Resource" id="Resource_wwhbt"]
+script = ExtResource("5_gevl6")
+metadata/_custom_type_script = "uid://bxjib3hd2rsas"
+
+[node name="Enemy" type="Node2D" unique_id=71826711]
+script = ExtResource("1_tlndo")
+components__ = Array[ExtResource("2_0qn5b")]([SubResource("Resource_tlndo"), SubResource("Resource_dpn1w"), SubResource("Resource_wwhbt")])
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=274262611]
+modulate = Color(1, 0, 0, 1)
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 64.0
+rotation = 3.1415927
+texture = ExtResource("4_0p2mk")
+expand_mode = 1
+stretch_mode = 5

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bvmnq06ggbmdc"]
+
+[ext_resource type="Script" uid="uid://36ettd4wf1qx" path="res://test_world/mirror.gd" id="1_1cf8a"]
+[ext_resource type="Texture2D" uid="uid://mufoynyv5som" path="res://icon.svg" id="2_4wor7"]
+
+[node name="Mirror" type="Node2D" unique_id=1114422080]
+script = ExtResource("1_1cf8a")
+
+[node name="LineX" type="Line2D" parent="." unique_id=367424227]
+unique_name_in_owner = true
+visible = false
+position = Vector2(16, 16)
+points = PackedVector2Array(0, 0, 16, 0)
+width = 24.0
+default_color = Color(1, 1, 1, 0.43529412)
+
+[node name="LineY" type="Line2D" parent="." unique_id=535333962]
+unique_name_in_owner = true
+visible = false
+position = Vector2(16, 16)
+points = PackedVector2Array(0, 0, 0, 16)
+width = 24.0
+default_color = Color(1, 1, 1, 0.43529412)
+
+[node name="Center" type="Node2D" parent="." unique_id=1856117371]
+unique_name_in_owner = true
+position = Vector2(16, 16)
+
+[node name="Polygon2D" type="Polygon2D" parent="Center" unique_id=1064313540]
+position = Vector2(-16, -16)
+texture = ExtResource("2_4wor7")
+polygon = PackedVector2Array(0, 0, 0, 32, 32, 0)
+uv = PackedVector2Array(27.990442, 50.382797, 27.990442, 82.3828, 59.99044, 50.382797)

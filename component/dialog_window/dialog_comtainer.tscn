@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://ced4p50fll4id"]
+
+[ext_resource type="Script" uid="uid://b2iwdralltc1j" path="res://component/dialog_window/dialog_comtainer.gd" id="1_2ynie"]
+[ext_resource type="Texture2D" uid="uid://mufoynyv5som" path="res://icon.svg" id="1_mob8c"]
+
+[node name="DialogComtainer" type="PanelContainer" unique_id=2070753661]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -236.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ynie")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=944939219]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=641845916]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer" unique_id=868128695]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_mob8c")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=1050382373]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/MarginContainer2" unique_id=1688768095]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 16
+text = "如果您是在工作职场或生产操作场景下听到这个词，指的就是第一种（标准作业程序）；如果在前端开发或浏览器调试场景下，则指的是第二种（同源策略）。如果您能告诉我具体的上下文，我可以为您提供更精准的实操建议。"
+scroll_active = false
+shortcut_keys_enabled = false
+vertical_alignment = 1

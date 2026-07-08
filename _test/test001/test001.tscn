@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://p3bkjauq46ok"]
+
+[ext_resource type="Script" uid="uid://bsvepmfrbeiil" path="res://_test/test001/test_001.gd" id="1_s0vm2"]
+
+[node name="Test001" type="Node2D" unique_id=1906502797]
+script = ExtResource("1_s0vm2")
+
+[node name="SpinBox" type="SpinBox" parent="." unique_id=1281961458]
+offset_top = 256.0
+offset_right = 86.5
+offset_bottom = 287.0
+min_value = 1.0
+max_value = 89.0
+value = 65.0

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bryxfyry3o6hn"]
+
+[ext_resource type="Script" uid="uid://d0n3ax45f2mur" path="res://component/debug_label/debug_label.gd" id="1_5phqw"]
+
+[node name="DebugLabel" type="RichTextLabel" unique_id=1980000301]
+z_index = 100
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_vertical = 2
+focus_mode = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+script = ExtResource("1_5phqw")
