@@ -33,6 +33,7 @@ metadata/_custom_type_script = "uid://igmj3iy5y6vo"
 
 [node name="Obstacle" type="Node" parent="ComponentManager" unique_id=833997774]
 script = ExtResource("6_qrnfr")
+type = 1
 metadata/_custom_type_script = "uid://34l10k1vdopw"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=671014384]

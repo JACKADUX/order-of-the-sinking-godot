@@ -36,10 +36,8 @@ func _ready() -> void:
 	mechanism_service.event_rasied.connect(handle_service_event)
 	action_service.event_rasied.connect(handle_service_event)
 	
-	handle_service_event.call_deferred(Events.DataChangedEvent.new())
+	init_system.call_deferred()
 	
-	entity_manager.raise_event.call_deferred(Events.InitEvent.new())
-	entity_manager.character_activate.call_deferred(active_character_index)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(Const.IM_UNDO):
@@ -58,6 +56,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func debug_info():
 	DebugLabel.set_value("Character", active_character_index)
 
+func init_system():
+	undo_service.clear()
+	entity_manager.raise_event(Events.InitEvent.new())
+	entity_manager.character_activate(active_character_index)
+	handle_service_event(Events.DataChangedEvent.new())
+
 func switch_character(event:InputEvent):
 	if event.is_action_pressed(Const.IM_SWITCH_CHARACTER):
 		var indexs = entity_manager.get_valid_character_indexs()
@@ -65,12 +69,10 @@ func switch_character(event:InputEvent):
 		active_character_index = indexs[wrapi(index+1, 0, indexs.size())]
 		entity_manager.character_activate(active_character_index)
 		
-	if event is InputEventKey and  KEY_1 <= event.keycode and event.keycode <= KEY_0 :
+	if event is InputEventKey and event.is_pressed() and KEY_0 <= event.keycode and event.keycode <= KEY_9 :
 		active_character_index = (event.keycode-KEY_1)+1
 		entity_manager.character_activate(active_character_index)
 		
-
-
 func character_movement(event:InputEvent):
 	var dir := Vector2i.ZERO
 	if event.is_action_pressed(Const.IM_LEFT):

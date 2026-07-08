@@ -9,8 +9,7 @@ const K_INVINCIBLE := "invincible"
 func take_damage(damage:int):
 	if invincible or is_dead():
 		return 
-	health_value = max(0, health_value-abs(damage))
-	set_value("health_value", health_value)
+	set_value("health_value", max(0, health_value-abs(damage)))
 
 func to_death():
 	set_value("health_value", 0)
@@ -23,3 +22,12 @@ func set_invincible(value:bool):
 	
 func is_invincible() -> bool:
 	return invincible
+
+func get_health() -> int:
+	return health_value
+
+func get_data() -> Dictionary:
+	return {
+		"health_value": health_value,
+		"invincible": is_invincible(),
+	}

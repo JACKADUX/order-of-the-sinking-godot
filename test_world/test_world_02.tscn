@@ -13,6 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://vkrlpfvcrnl2" path="res://entity/character/character_6.tscn" id="13_heg3v"]
 [ext_resource type="PackedScene" uid="uid://ceyxearq1tjj5" path="res://entity/mechanism/pressure_plate.tscn" id="13_ikxlb"]
 [ext_resource type="PackedScene" uid="uid://bumfm7xfd5hwq" path="res://entity/mechanism/door.tscn" id="14_46204"]
+[ext_resource type="PackedScene" uid="uid://pi3xqskrefv1" path="res://entity/character/character_3.tscn" id="14_ikxlb"]
+[ext_resource type="PackedScene" uid="uid://beqay7j2ui0sb" path="res://entity/character/character_2.tscn" id="15_46204"]
+[ext_resource type="PackedScene" uid="uid://bkdq0j4g81wax" path="res://entity/character/character_5.tscn" id="16_0e4s7"]
+[ext_resource type="PackedScene" uid="uid://ri16qcx36vo6" path="res://entity/character/character_4.tscn" id="16_wdnem"]
 
 [node name="TestWorld02" type="Node2D" unique_id=253937265]
 
@@ -20,6 +24,7 @@
 script = ExtResource("1_jr6n0")
 entity_manager = NodePath("../EntityManager")
 tilemap_manager = NodePath("../TileMapManager")
+active_character_index = 5
 
 [node name="TileMapManager" type="Node" parent="." unique_id=771017993 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
 script = ExtResource("2_l17wg")
@@ -30,7 +35,7 @@ wall_tilemap = NodePath("WallTileMapLayer")
 show_behind_parent = true
 z_index = -1
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAADAAYAAAACAAAAAAAEAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAACAAAAAAAGAAcAAAACAAAAAAAFAAcAAAACAAAAAAAEAAcAAAACAAAAAAADAAcAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAADAAYAAAACAAAAAAAEAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAACAAAAAAAGAAcAAAACAAAAAAAFAAcAAAACAAAAAAAEAAcAAAACAAAAAAADAAcAAAACAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAABAAUAAAABAAAAAAABAAYAAAABAAAAAAABAAcAAAABAAAAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAACAAcAAAABAAAAAAACAAYAAAABAAAAAAACAAUAAAABAAAAAAACAAQAAAABAAAAAAACAAMAAAABAAAAAAACAAIAAAABAAAAAAACAAEAAAABAAAAAAADAAEAAAABAAAAAAAEAAEAAAABAAAAAAAFAAEAAAABAAAAAAAGAAEAAAABAAAAAAAHAAEAAAABAAAAAAAIAAEAAAABAAAAAAAIAAIAAAABAAAAAAAHAAIAAAABAAAAAAAGAAIAAAABAAAAAAAFAAIAAAABAAAAAAAEAAIAAAABAAAAAAADAAIAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAABAAAAAAAHAAMAAAABAAAAAAAIAAMAAAABAAAAAAAIAAQAAAABAAAAAAAHAAQAAAABAAAAAAAGAAQAAAABAAAAAAAFAAQAAAABAAAAAAAEAAQAAAABAAAAAAADAAQAAAABAAAAAAADAAUAAAABAAAAAAAEAAUAAAABAAAAAAAFAAUAAAABAAAAAAAGAAUAAAABAAAAAAAHAAUAAAABAAAAAAAIAAUAAAABAAAAAAAIAAYAAAABAAAAAAAHAAYAAAABAAAAAAAHAAcAAAABAAAAAAAHAAgAAAABAAAAAAAIAAcAAAABAAAAAAAIAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAA=")
 tile_set = ExtResource("3_l6dab")
 
 [node name="WallTileMapLayer" parent="TileMapManager" unique_id=845189614 instance=ExtResource("4_jug2e")]
@@ -62,13 +67,25 @@ position = Vector2(192, 128)
 position = Vector2(96, 96)
 
 [node name="Rock2" parent="EntityManager" unique_id=988966462 instance=ExtResource("8_l6dab")]
-position = Vector2(160, 96)
+position = Vector2(160, 128)
 
 [node name="Grass" parent="EntityManager" unique_id=859745245 instance=ExtResource("12_heg3v")]
 position = Vector2(64, 96)
 
 [node name="Character1" parent="EntityManager" unique_id=1901295413 instance=ExtResource("11_x2vco")]
-position = Vector2(128, 128)
+position = Vector2(32, 96)
+
+[node name="Character2" parent="EntityManager" unique_id=1598676439 instance=ExtResource("15_46204")]
+position = Vector2(64, 192)
+
+[node name="Character3" parent="EntityManager" unique_id=2002712342 instance=ExtResource("14_ikxlb")]
+position = Vector2(32, 160)
+
+[node name="Character4" parent="EntityManager" unique_id=1530454921 instance=ExtResource("16_wdnem")]
+position = Vector2(192, 64)
+
+[node name="Character5" parent="EntityManager" unique_id=1431702137 instance=ExtResource("16_0e4s7")]
+position = Vector2(128, 96)
 
 [node name="Character6" parent="EntityManager" unique_id=501712712 instance=ExtResource("13_heg3v")]
 position = Vector2(64, 64)

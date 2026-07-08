@@ -24,6 +24,7 @@ func get_component(script:GDScript) -> Component:
 
 func get_data() -> Dictionary:
 	return {
+		"iid":get_instance_id(),
 		"id":get_id(),
 		"component_data": component_manager.get_data()
 	}
@@ -49,9 +50,18 @@ func move_to(coords:Vector2i):
 	#tween.tween_property(self, "global_position", Vector2(coords*Const.TILE), 0.1)
 	#tween.tween_callback(set_coords.bind(coords))
 
-func update_with(key:String, value):
-	pass
+func update_with(component:Component, _key:=""):
+	# WARNING : 覆写该方法时记得 super(...) 否则可能会造成实体无法移动的情况
+	if component is Coords:
+		global_position = component.get_coords()*Const.TILE
+	elif component is Health:
+		if component.is_dead():
+			modulate.a = 0.5
+		else:
+			modulate.a = 1
 
+			
+				
 func handle_event(event:BaseEvent):
 	if event is Events.InitEvent:
 		set_coords(Vector2i(floor(global_position / Const.TILE)))

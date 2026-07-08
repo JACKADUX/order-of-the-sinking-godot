@@ -29,6 +29,7 @@ metadata/_custom_type_script = "uid://gc6aow4ry1an"
 
 [node name="Obstacle" type="Node" parent="ComponentManager" unique_id=1103748958]
 script = ExtResource("3_4f1ct")
+type = 1
 metadata/_custom_type_script = "uid://34l10k1vdopw"
 
 [node name="Creature" type="Node" parent="ComponentManager" unique_id=578556313]

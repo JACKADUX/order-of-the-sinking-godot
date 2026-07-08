@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://gc6aow4ry1an"
 
 [node name="Obstacle" type="Node" parent="ComponentManager" unique_id=1428199243]
 script = ExtResource("4_01i6h")
-type = 2
+type = 3
 metadata/_custom_type_script = "uid://34l10k1vdopw"
 
 [node name="Health" type="Node" parent="ComponentManager" unique_id=336893275]

@@ -7,7 +7,6 @@ func get_entity() -> Entity:
 	return owner
 
 func get_data() -> Dictionary:
-	var pl = get_property_list()
 	return {}
 	
 func set_data(data:Dictionary):

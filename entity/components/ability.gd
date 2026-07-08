@@ -5,3 +5,8 @@ enum Type {NONE, POWER, STEAL, TELEPORT, IMMUNITY, FOLLOW, MORPH}
 
 func get_type() -> Type:
 	return type
+
+func get_data() -> Dictionary:
+	return {
+		"type": get_type()
+	}

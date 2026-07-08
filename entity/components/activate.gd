@@ -8,3 +8,8 @@ func is_activated() -> bool:
 
 func set_activate(value:bool):
 	set_value("activate", value)
+
+func get_data() -> Dictionary:
+	return {
+		"activate": is_activated()
+	}

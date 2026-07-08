@@ -7,3 +7,8 @@ func is_crystalized() -> bool:
 
 func set_crystalize(value:bool):
 	set_value("crystalize", value)
+
+func get_data() -> Dictionary:
+	return {
+		"crystalize": is_crystalized()
+	}

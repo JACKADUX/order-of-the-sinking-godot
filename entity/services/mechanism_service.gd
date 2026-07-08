@@ -10,7 +10,7 @@ func _init(_tilemap_manager:TileMapManager, _entity_manager:EntityManager) -> vo
 func update():
 	trigger_check()
 	actuator_check()
-	#door_smash_check()
+	door_smash_check()
 						
 func trigger_check():
 	for trigger : MechanismTrigger in entity_manager.get_triggers():
@@ -21,7 +21,7 @@ func actuator_check():
 		actuator.check()
 		
 func door_smash_check():
-	var entities = entity_manager.get_tagetable_entites()
+	var entities = entity_manager.get_targetable_entites()
 	var any_dead := false
 	var is_character := false
 	for actuator :MechanismActuator in entity_manager.get_actuators():
@@ -34,7 +34,6 @@ func door_smash_check():
 					any_dead = true
 					if entity is Character:
 						is_character = true
-					print(actuator)
 	if not any_dead:
 		return 
 	if is_character:

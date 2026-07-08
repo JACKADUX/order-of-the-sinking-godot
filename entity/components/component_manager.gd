@@ -54,17 +54,7 @@ func set_data(data:Dictionary):
 ## 
 func handle_value_changed(component:Component, key:String):
 	var entity = owner
-	if component is Health:
-		match key:
-			Health.K_HEALTH_VALUE:
-				if component.is_dead():
-					entity.modulate.a = 0.5
-				else:
-					entity.modulate.a = 1
-	elif component is Coords:
-		entity.global_position = component.get_coords()*Const.TILE
-	elif component is Activate:
-		entity.update_with(key, component.is_activated())
+	entity.update_with(component, key)
 
 
 

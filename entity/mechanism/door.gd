@@ -8,12 +8,14 @@ func _ready() -> void:
 		if child is MechanismTrigger and child not in triggers:
 			triggers.append(child)
 	
-func update_with(key:String, value):
-	match key:
-		Activate.K_ACTIVATE:
-			sprite_2d.texture.x = 1 if value else 0
+func update_with(component:Component, key:=""):
+	super(component, key)
+	if component is Activate:
+		sprite_2d.texture.x = 1 if component.is_activated() else 0
+			
 	
 func check():
-	var activate :Activate= get_component(Activate)
+	var activate :Activate = get_component(Activate)
 	activate.set_activate(triggers.all(func(t): return t.is_activated()))
-		
+	var obstacle :Obstacle = get_component(Obstacle)
+	obstacle.set_type(Obstacle.Type.GHOST if activate.is_activated() else Obstacle.Type.WALL)

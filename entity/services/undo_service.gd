@@ -7,6 +7,9 @@ var entity_manager:EntityManager
 func _init(_entity_manager:EntityManager) -> void:
 	entity_manager = _entity_manager
 
+func clear():
+	undo_datas.clear()
+
 func warp(fn:Callable):
 	var before_datas = collect_datas()
 	fn.call()
@@ -20,13 +23,13 @@ func add_undo(before_datas:Array):
 		
 func collect_datas() -> Array:
 	var datas = []
-	for item in entity_manager.get_tagetable_entites():
+	for item in entity_manager.get_targetable_entites():
 		datas.append(item.get_data())
 	return datas
 
 func apply_datas(datas:Array):
 	for data in datas:
-		var item = instance_from_id(data.id)
+		var item = instance_from_id(data.iid)
 		if not item:
 			printerr("数据不应该丢失")
 			continue

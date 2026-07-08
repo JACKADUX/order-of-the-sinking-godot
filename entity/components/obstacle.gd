@@ -1,10 +1,10 @@
 class_name Obstacle extends Component
 
-enum Type {BLOCK, GHOST, MOVABLE}
-@export var type := Type.BLOCK
+enum Type {NONE, WALL, GHOST, MOVABLE}
+@export var type := Type.NONE
 
-func is_block() -> bool:
-	return type == Type.BLOCK
+func is_wall() -> bool:
+	return type == Type.WALL
 
 func is_ghost() -> bool:
 	return type == Type.GHOST
@@ -12,5 +12,10 @@ func is_ghost() -> bool:
 func is_movable() -> bool:
 	return type == Type.MOVABLE
 
-func change_type(value:Type):
+func set_type(value:Type):
 	set_value("type", value)
+
+func get_data() -> Dictionary:
+	return {
+		"type": type,
+	}
