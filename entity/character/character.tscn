@@ -1,32 +1,45 @@
 [gd_scene format=3 uid="uid://biyc0cm3wpghd"]
 
 [ext_resource type="Script" uid="uid://c8oym2g12yvay" path="res://entity/character/character.gd" id="1_b6my0"]
+[ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://entity/components/component_manager.gd" id="2_jgacm"]
 [ext_resource type="Texture2D" uid="uid://mufoynyv5som" path="res://icon.svg" id="2_pn670"]
-[ext_resource type="Script" uid="uid://betavriq62lcd" path="res://entity/components/component.gd" id="2_tfwrq"]
+[ext_resource type="Script" uid="uid://gc6aow4ry1an" path="res://entity/components/coords.gd" id="3_a4ask"]
 [ext_resource type="Script" uid="uid://2ma8n0pugcxl" path="res://entity/components/ability.gd" id="4_ceslx"]
-[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/movable.gd" id="5_a4ask"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/obstacle.gd" id="5_a4ask"]
 [ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://entity/components/health.gd" id="5_jgacm"]
-[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://entity/components/creature.gd" id="6_a4ask"]
-
-[sub_resource type="Resource" id="Resource_hfuav"]
-script = ExtResource("4_ceslx")
-metadata/_custom_type_script = "uid://2ma8n0pugcxl"
-
-[sub_resource type="Resource" id="Resource_agnga"]
-script = ExtResource("5_jgacm")
-metadata/_custom_type_script = "uid://bqr5hujuxeivx"
-
-[sub_resource type="Resource" id="Resource_y6428"]
-script = ExtResource("5_a4ask")
-metadata/_custom_type_script = "uid://34l10k1vdopw"
-
-[sub_resource type="Resource" id="Resource_heg3v"]
-script = ExtResource("6_a4ask")
-metadata/_custom_type_script = "uid://bxjib3hd2rsas"
+[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://entity/components/creature.gd" id="7_wwhbt"]
+[ext_resource type="Script" uid="uid://igmj3iy5y6vo" path="res://entity/components/activate.gd" id="8_p5ivt"]
 
 [node name="Character" type="Node2D" unique_id=1901295413]
 script = ExtResource("1_b6my0")
-components__ = Array[ExtResource("2_tfwrq")]([SubResource("Resource_hfuav"), SubResource("Resource_agnga"), SubResource("Resource_y6428"), SubResource("Resource_heg3v")])
+
+[node name="ComponentManager" type="Node" parent="." unique_id=1700654357]
+script = ExtResource("2_jgacm")
+metadata/_custom_type_script = "uid://caxe2fuoiysb2"
+
+[node name="Ability" type="Node" parent="ComponentManager" unique_id=864236653]
+script = ExtResource("4_ceslx")
+metadata/_custom_type_script = "uid://2ma8n0pugcxl"
+
+[node name="Coords" type="Node" parent="ComponentManager" unique_id=1715496236]
+script = ExtResource("3_a4ask")
+metadata/_custom_type_script = "uid://gc6aow4ry1an"
+
+[node name="Obstacle" type="Node" parent="ComponentManager" unique_id=366363401]
+script = ExtResource("5_a4ask")
+type = 2
+metadata/_custom_type_script = "uid://34l10k1vdopw"
+
+[node name="Health" type="Node" parent="ComponentManager" unique_id=1008462022]
+script = ExtResource("5_jgacm")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[node name="Creature" type="Node" parent="ComponentManager" unique_id=97497585]
+script = ExtResource("7_wwhbt")
+metadata/_custom_type_script = "uid://bxjib3hd2rsas"
+
+[node name="Activate" type="Node" parent="ComponentManager" unique_id=726838104]
+script = ExtResource("8_p5ivt")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2106769502]
 offset_right = 32.0

@@ -1,7 +1,7 @@
 class_name Health extends Component
 
-signal health_changed(damage:int)
-signal invincible_changed
+const K_HEALTH_VALUE := "health_value"
+const K_INVINCIBLE := "invincible"
 
 @export var health_value :int= 1
 @export var invincible := false
@@ -10,26 +10,16 @@ func take_damage(damage:int):
 	if invincible or is_dead():
 		return 
 	health_value = max(0, health_value-abs(damage))
-	health_changed.emit(damage)
+	set_value("health_value", health_value)
 
 func to_death():
-	health_value = 0
-	health_changed.emit(0)
+	set_value("health_value", 0)
 	
 func is_dead() -> bool:
 	return health_value <= 0
 
-func get_data() -> Dictionary:
-	return super().merged({
-		"health_value":health_value,
-	},true)
-	
-func set_data(data:Dictionary):
-	super(data)
-	health_value = data.get("health_value", health_value)
-
 func set_invincible(value:bool):
-	if invincible == value:
-		return 
-	invincible = value
-	invincible_changed.emit()
+	set_value("invincible", value)
+	
+func is_invincible() -> bool:
+	return invincible

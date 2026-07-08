@@ -7,6 +7,18 @@ func _init(_tilemap_manager:TileMapManager, _entity_manager:EntityManager) -> vo
 	tilemap_manager = _tilemap_manager
 	entity_manager = _entity_manager
 
+func can_move_to_this_coords(entity:Entity, coords:Vector2i) -> bool:
+	var target_entity := entity_manager.get_entity_at(coords)
+	if target_entity:
+		var obstacle :Obstacle = target_entity.get_component(Obstacle)
+		if obstacle and not obstacle.is_ghost():
+			return false
+	if tilemap_manager.is_wall(coords):
+		return false
+	if entity is Character:
+		return not tilemap_manager.is_water(coords)
+	return true
+
 func try_move(entity:Entity, dir:Vector2i) -> bool:
 	if not can_move_to_this_coords(entity, entity.get_coords() + dir):
 		return false
@@ -29,15 +41,7 @@ func try_slide(entity:Entity, dir:Vector2i, max_iter:int=1) -> bool:
 		return true
 	return false
 	
-func can_move_to_this_coords(entity:Entity, coords:Vector2i) -> bool:
-	var movable :Movable = entity.get_component(Movable)
-	if not movable:
-		return true
-	if not movable.is_movable() or tilemap_manager.is_wall(coords):
-		return false
-	if entity is Character:
-		return not tilemap_manager.is_water(coords)
-	return true
+
 
 
 func apply_ability(entity:Entity, dir:Vector2i, ability_type:int):
@@ -83,7 +87,7 @@ func morph(entity:Entity, dir:Vector2i):
 	var other_entity := entity_manager.get_entity_at(current_coords+dir)
 	if other_entity :
 		if other_entity.has_component(Creature):
-			var movable :Movable = other_entity.get_component(Movable)
-			movable.set_obstacle(not movable.obstacle)
+			var obstacle :Obstacle = other_entity.get_component(Obstacle)
+			obstacle.set_obstacle(not obstacle.obstacle)
 	else:
 		entity.move_to(current_coords+dir)

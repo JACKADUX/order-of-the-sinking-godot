@@ -1,28 +1,8 @@
 [gd_scene format=3 uid="uid://beqay7j2ui0sb"]
 
 [ext_resource type="PackedScene" uid="uid://biyc0cm3wpghd" path="res://entity/character/character.tscn" id="1_yil25"]
-[ext_resource type="Script" uid="uid://betavriq62lcd" path="res://entity/components/component.gd" id="2_nvxhm"]
-[ext_resource type="Script" uid="uid://2ma8n0pugcxl" path="res://entity/components/ability.gd" id="3_h56v0"]
-[ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://entity/components/health.gd" id="4_epeig"]
-[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/movable.gd" id="5_bgo6p"]
-[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://entity/components/creature.gd" id="6_h56v0"]
-
-[sub_resource type="Resource" id="Resource_alllh"]
-script = ExtResource("3_h56v0")
-type = 2
-metadata/_custom_type_script = "uid://2ma8n0pugcxl"
-
-[sub_resource type="Resource" id="Resource_6hqhe"]
-script = ExtResource("4_epeig")
-metadata/_custom_type_script = "uid://bqr5hujuxeivx"
-
-[sub_resource type="Resource" id="Resource_cg2wy"]
-script = ExtResource("5_bgo6p")
-metadata/_custom_type_script = "uid://34l10k1vdopw"
-
-[sub_resource type="Resource" id="Resource_epeig"]
-script = ExtResource("6_h56v0")
-metadata/_custom_type_script = "uid://bxjib3hd2rsas"
 
 [node name="Character2" unique_id=1901295413 instance=ExtResource("1_yil25")]
-components__ = Array[ExtResource("2_nvxhm")]([SubResource("Resource_alllh"), SubResource("Resource_6hqhe"), SubResource("Resource_cg2wy"), SubResource("Resource_epeig")])
+
+[node name="Ability" parent="ComponentManager" parent_id_path=PackedInt32Array(1700654357) index="0" unique_id=864236653]
+type = 2

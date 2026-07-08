@@ -20,7 +20,7 @@ func add_undo(before_datas:Array):
 		
 func collect_datas() -> Array:
 	var datas = []
-	for item in entity_manager.get_entites():
+	for item in entity_manager.get_tagetable_entites():
 		datas.append(item.get_data())
 	return datas
 

@@ -37,8 +37,9 @@ func _ready() -> void:
 	action_service.event_rasied.connect(handle_service_event)
 	
 	handle_service_event.call_deferred(Events.DataChangedEvent.new())
-
-	character_activate.call_deferred(active_character_index)
+	
+	entity_manager.raise_event.call_deferred(Events.InitEvent.new())
+	entity_manager.character_activate.call_deferred(active_character_index)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(Const.IM_UNDO):
@@ -59,22 +60,16 @@ func debug_info():
 
 func switch_character(event:InputEvent):
 	if event.is_action_pressed(Const.IM_SWITCH_CHARACTER):
-		var d := {}
-		for character:Character in entity_manager.get_characters():
-			d[character.get_character_index()] = true
-		var indexs = d.keys()
-		indexs.sort() 
+		var indexs = entity_manager.get_valid_character_indexs()
 		var index = indexs.find(active_character_index)
 		active_character_index = indexs[wrapi(index+1, 0, indexs.size())]
-		character_activate(active_character_index)
+		entity_manager.character_activate(active_character_index)
 		
 	if event is InputEventKey and  KEY_1 <= event.keycode and event.keycode <= KEY_0 :
 		active_character_index = (event.keycode-KEY_1)+1
-		character_activate(active_character_index)
+		entity_manager.character_activate(active_character_index)
 		
-func character_activate(index:int):
-	for character :Character in entity_manager.get_characters():
-		character.active = character.get_component(Ability).type == index
+
 
 func character_movement(event:InputEvent):
 	var dir := Vector2i.ZERO
@@ -87,7 +82,7 @@ func character_movement(event:InputEvent):
 	if event.is_action_pressed(Const.IM_DOWN):
 		dir = Vector2.DOWN
 	if dir != Vector2i.ZERO:
-		var characters := entity_manager.get_characters().filter(func(c): return c.is_active())
+		var characters := entity_manager.get_active_characters()
 		if not characters:
 			return
 		# NOTE : 有点暴力但是简单
@@ -108,7 +103,7 @@ func handle_service_event(event:BaseEvent):
 		buff_service.update()
 		mechanism_service.update()
 		battle_service.update()
-		get_tree().call_group(Const.GROUP_ENTITY, "handle_event", event)
+		entity_manager.raise_event(event)
 
-
+	
 	

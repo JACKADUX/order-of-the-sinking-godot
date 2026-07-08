@@ -8,24 +8,36 @@ func _init(_tilemap_manager:TileMapManager, _entity_manager:EntityManager) -> vo
 	entity_manager = _entity_manager
 
 func update():
-	var alive_enemies_count = entity_manager.get_enemies().size()
+	trigger_check()
+	actuator_check()
+	#door_smash_check()
+						
+func trigger_check():
 	for trigger : MechanismTrigger in entity_manager.get_triggers():
-		if trigger is PressurePlate:
-			var value = entity_manager.get_entity_at(trigger.get_coords()) != null
-			trigger.set_active(value)
-		elif trigger is EnemyCounter:
-			trigger.set_active(alive_enemies_count == 0)
-			
-	var entities = entity_manager.get_entites()
-	var any_dead := false
+		trigger.check(entity_manager)
+
+func actuator_check():
 	for actuator :MechanismActuator in entity_manager.get_actuators():
-		actuator.check_triggers()
+		actuator.check()
+		
+func door_smash_check():
+	var entities = entity_manager.get_tagetable_entites()
+	var any_dead := false
+	var is_character := false
+	for actuator :MechanismActuator in entity_manager.get_actuators():
 		if actuator is Door and not actuator.is_activated():
 			var coords = actuator.get_coords()
 			for entity :Entity in entities:
-				if entity.has_component(Health) and entity.get_coords() == coords:
-					entity.get_component(Health).to_death()
+				var health = entity.get_component(Health)
+				if health and entity.get_coords() == coords:
+					health.to_death()
 					any_dead = true
-	if any_dead:
-		raise_event(Events.DataChangedEvent.new())
-						
+					if entity is Character:
+						is_character = true
+					print(actuator)
+	if not any_dead:
+		return 
+	if is_character:
+		raise_event(Events.CharacterDeadEvent.new())
+	raise_event(Events.DataChangedEvent.new())
+	

@@ -2,14 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bw8j3q3v0jm2b" path="res://entity/mechanism/door.gd" id="1_bypxx"]
 [ext_resource type="Texture2D" uid="uid://2ppp2815qifv" path="res://assets/aesprit/Sprite-0001.png" id="2_a4h7l"]
+[ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://entity/components/component_manager.gd" id="2_onyfp"]
 [ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="3_hfuav"]
-[ext_resource type="Script" uid="uid://betavriq62lcd" path="res://entity/components/component.gd" id="5_y6428"]
-[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/movable.gd" id="6_qrnfr"]
-
-[sub_resource type="Resource" id="Resource_46204"]
-script = ExtResource("6_qrnfr")
-obstacle = true
-metadata/_custom_type_script = "uid://34l10k1vdopw"
+[ext_resource type="Script" uid="uid://gc6aow4ry1an" path="res://entity/components/coords.gd" id="3_rg48y"]
+[ext_resource type="Script" uid="uid://igmj3iy5y6vo" path="res://entity/components/activate.gd" id="4_cxlaf"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://entity/components/obstacle.gd" id="6_qrnfr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_agnga"]
 resource_local_to_scene = true
@@ -21,7 +18,22 @@ metadata/_custom_type_script = "uid://08jwjcj2tn1a"
 
 [node name="Door" type="Node2D" unique_id=1682633432]
 script = ExtResource("1_bypxx")
-components__ = Array[ExtResource("5_y6428")]([SubResource("Resource_46204")])
+
+[node name="ComponentManager" type="Node" parent="." unique_id=1303258065]
+script = ExtResource("2_onyfp")
+metadata/_custom_type_script = "uid://caxe2fuoiysb2"
+
+[node name="Coords" type="Node" parent="ComponentManager" unique_id=1416202094]
+script = ExtResource("3_rg48y")
+metadata/_custom_type_script = "uid://gc6aow4ry1an"
+
+[node name="Activate" type="Node" parent="ComponentManager" unique_id=1823677440]
+script = ExtResource("4_cxlaf")
+metadata/_custom_type_script = "uid://igmj3iy5y6vo"
+
+[node name="Obstacle" type="Node" parent="ComponentManager" unique_id=833997774]
+script = ExtResource("6_qrnfr")
+metadata/_custom_type_script = "uid://34l10k1vdopw"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=671014384]
 unique_name_in_owner = true

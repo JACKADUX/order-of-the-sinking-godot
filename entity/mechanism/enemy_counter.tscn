@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cpxlede0lnmw7"]
+
+[ext_resource type="Script" uid="uid://c47un0ga4ptfg" path="res://entity/mechanism/enemy_counter.gd" id="1_7mmgt"]
+[ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://entity/components/component_manager.gd" id="2_27iq4"]
+[ext_resource type="Script" uid="uid://igmj3iy5y6vo" path="res://entity/components/activate.gd" id="3_7glii"]
+
+[node name="EnemyCounter" type="Node2D" unique_id=1115247001]
+script = ExtResource("1_7mmgt")
+metadata/_custom_type_script = "uid://c47un0ga4ptfg"
+
+[node name="ComponentManager" type="Node" parent="." unique_id=1199255708]
+script = ExtResource("2_27iq4")
+metadata/_custom_type_script = "uid://caxe2fuoiysb2"
+
+[node name="Activate" type="Node" parent="ComponentManager" unique_id=776779588]
+script = ExtResource("3_7glii")
