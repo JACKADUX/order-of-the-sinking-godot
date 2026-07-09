@@ -21,15 +21,15 @@ func actuator_check():
 		actuator.check()
 		
 func door_smash_check():
-	var entities = entity_manager.get_targetable_entites()
+	var coords_data = entity_manager.query_coords_entity_data(EntityManager.K_CACHE_ALL)
 	var any_dead := false
 	var is_character := false
 	for actuator :MechanismActuator in entity_manager.get_actuators():
 		if actuator is Door and not actuator.is_activated():
-			var coords = actuator.get_coords()
-			for entity :Entity in entities:
+			var entity :Entity = coords_data.get(actuator.get_coords())
+			if entity:
 				var health = entity.get_component(Health)
-				if health and entity.get_coords() == coords:
+				if health:
 					health.to_death()
 					any_dead = true
 					if entity is Character:

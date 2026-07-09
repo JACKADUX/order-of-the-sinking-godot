@@ -19,7 +19,6 @@
 script = ExtResource("1_84pay")
 entity_manager = NodePath("../EntityManager")
 tilemap_manager = NodePath("../TileMapManager")
-active_character_index = 5
 
 [node name="TileMapManager" type="Node" parent="." unique_id=771017993 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
 script = ExtResource("2_nvprx")

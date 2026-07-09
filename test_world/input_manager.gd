@@ -59,6 +59,7 @@ func debug_info():
 func init_system():
 	undo_service.clear()
 	entity_manager.raise_event(Events.InitEvent.new())
+	entity_manager.update_coords_entity_cache()
 	entity_manager.character_activate(active_character_index)
 	handle_service_event(Events.DataChangedEvent.new())
 
@@ -102,6 +103,7 @@ func action_check(event:InputEvent):
 # ---
 func handle_service_event(event:BaseEvent):
 	if event is Events.DataChangedEvent:
+		entity_manager.update_coords_entity_cache()
 		buff_service.update()
 		mechanism_service.update()
 		battle_service.update()

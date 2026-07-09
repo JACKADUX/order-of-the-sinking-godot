@@ -24,7 +24,6 @@
 script = ExtResource("1_jr6n0")
 entity_manager = NodePath("../EntityManager")
 tilemap_manager = NodePath("../TileMapManager")
-active_character_index = 5
 
 [node name="TileMapManager" type="Node" parent="." unique_id=771017993 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
 script = ExtResource("2_l17wg")
@@ -73,7 +72,7 @@ position = Vector2(160, 128)
 position = Vector2(64, 96)
 
 [node name="Character1" parent="EntityManager" unique_id=1901295413 instance=ExtResource("11_x2vco")]
-position = Vector2(32, 96)
+position = Vector2(160, 64)
 
 [node name="Character2" parent="EntityManager" unique_id=1598676439 instance=ExtResource("15_46204")]
 position = Vector2(64, 192)

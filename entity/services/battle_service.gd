@@ -21,5 +21,5 @@ func simple_hurt(enemy:Enemy, target_entity:Entity):
 		target_entity.get_component(Health).take_damage(1)
 
 func line_hurt(enemy:Enemy, target_entity:Entity):
-	if entity_manager.get_nearest_entitiy_at_line(enemy, Vector2i.UP) == target_entity:
+	if entity_manager.get_nearest_entitiy_at_direction(enemy, Vector2i.UP) == target_entity:
 		target_entity.get_component(Health).take_damage(1)

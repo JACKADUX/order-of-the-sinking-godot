@@ -8,12 +8,7 @@ func _init(_tilemap_manager:TileMapManager, _entity_manager:EntityManager) -> vo
 	entity_manager = _entity_manager
 
 func can_move_to_this_coords(entity:Entity, coords:Vector2i) -> bool:
-	var target_entity := entity_manager.get_entity_at(coords)
-	if target_entity:
-		var obstacle :Obstacle = target_entity.get_component(Obstacle)
-		if obstacle and obstacle.is_wall():
-			return false
-	if tilemap_manager.is_wall(coords):
+	if tilemap_manager.is_wall(coords) or entity_manager.get_wall_entity_at(coords):
 		return false
 	if entity is Character:
 		return not tilemap_manager.is_water(coords)
@@ -80,7 +75,7 @@ func teleport(entity:Entity, dir:Vector2i):
 	if not can_move_to_this_coords(entity, entity.get_coords() + dir):
 		return false
 	var current_coords := entity.get_coords()
-	var other_entity := entity_manager.get_nearest_entitiy_at_line(entity, dir)
+	var other_entity := entity_manager.get_nearest_entitiy_at_direction(entity, dir)
 	if other_entity:
 		var obstacle :Obstacle = other_entity.get_component(Obstacle)
 		if obstacle and obstacle.is_wall():
@@ -94,7 +89,7 @@ func follow(entity:Entity, dir:Vector2i):
 	var target_coords := entity.get_coords()+dir
 	if not can_move_to_this_coords(entity, target_coords):
 		return false
-	var other_entity := entity_manager.get_entity_at(target_coords)
+	var other_entity := entity_manager.get_movable_entity_at(target_coords)
 	if other_entity:
 		var obstacle :Obstacle = other_entity.get_component(Obstacle)
 		if obstacle and obstacle.is_wall():
@@ -106,7 +101,9 @@ func follow(entity:Entity, dir:Vector2i):
 		
 func morph(entity:Entity, dir:Vector2i):
 	var coords := entity.get_coords()+ dir
-	var other_entity := entity_manager.get_entity_at(coords)
+	var other_entity := entity_manager.get_movable_entity_at(coords)
+	if not other_entity:
+		other_entity = entity_manager.get_wall_entity_at(coords)
 	if other_entity:
 		# NOTE: 变形者特殊的点在于可以把生物属性的 WALL 改为 MOVABLE
 		var creature :Creature = other_entity.get_component(Creature)

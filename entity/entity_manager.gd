@@ -7,91 +7,104 @@ func raise_event(event:BaseEvent):
 func get_all_entities() -> Array:
 	return get_tree().get_nodes_in_group(Const.GROUP_ENTITY)
 
-func get_targetable_entites() -> Array:
-	# NOTE: 这里只会返回有效实体
-	var entities := []
+const K_CACHE_MOVABLE := "K_CACHE_MOVABLE"
+const K_CACHE_WALL := "K_CACHE_WALL"
+const K_CACHE_CHARACTER := "K_CACHE_CHARACTER"
+const K_CACHE_ENEMY := "K_CACHE_ENEMY"
+const K_CACHE_ALL := "K_CACHE_ALL"
+
+var _cache := {} 
+func update_coords_entity_cache():
+	_cache = create_coords_entity_data()
+
+func query_coords_entity_data(...args) -> Dictionary:
+	var data = {}
+	for key in args:
+		data.merge(_cache.get(key, {}))
+	return data
+
+func create_coords_entity_data() -> Dictionary:
+	var cache = {
+		K_CACHE_MOVABLE:{},
+		K_CACHE_WALL:{},
+		K_CACHE_CHARACTER:{},
+		K_CACHE_ENEMY:{},
+	}
+	var keys = cache.keys()
 	for entity in get_all_entities():
-		var obstical :Obstacle = entity.get_component(Obstacle)
-		if not obstical or not obstical.is_movable():
-			# NOTE : 无有效移动能力的实体不用获取
-			continue
 		var health = entity.get_component(Health)
 		if health and health.is_dead():
-			# 有生命值且已经死亡的实体不用获取
-			continue
-		entities.append(entity)
-	return entities
-
-func get_entity_at(coords:Vector2i) -> Entity: 
-	for entity :Entity in get_targetable_entites():
-		if coords == entity.get_coords():
-			return entity
-	return null 
-
-func get_wall_entity_at(coords:Vector2i) -> Entity:
-	for entity :Entity in get_all_entities():
-		if coords != entity.get_coords():
+			# NOTE : 有生命值且已经死亡的实体不用获取
 			continue
 		var obstical :Obstacle = entity.get_component(Obstacle)
-		if obstical and obstical.is_wall():
-			return entity
-	return null
+		if not obstical:
+			continue
+		for cache_key:String in keys:
+			match cache_key:
+				K_CACHE_MOVABLE:
+					if not obstical.is_movable() :
+						# NOTE : 无有效移动能力的实体不用获取
+						continue
+				K_CACHE_WALL:
+					if not obstical.is_wall():
+						continue
+				K_CACHE_CHARACTER:
+					if entity is not Character or is_crystalized(entity):
+						continue
+				K_CACHE_ENEMY:
+					if entity is not Enemy or is_crystalized(entity):
+						continue
+			cache[cache_key][entity.get_coords()] = entity
+			
+	
+	cache[K_CACHE_ALL] = {}	
+	for cache_key:String in keys:
+		cache[K_CACHE_ALL].merge(cache[cache_key],true)
+	return cache
 
-func has_entity_at(posi:Vector2i) -> bool:
-	return get_entity_at(posi) != null
+func get_entities() -> Array:
+	return query_coords_entity_data(K_CACHE_ALL).values()
+
+func get_entity_at(coords:Vector2i) -> Entity: 
+	return query_coords_entity_data(K_CACHE_ALL).get(coords) 	
+	
+func get_movable_entity_at(coords:Vector2i) -> Entity: 
+	return query_coords_entity_data(K_CACHE_MOVABLE).get(coords) 
+
+func get_wall_entity_at(coords:Vector2i) -> Entity:
+	return query_coords_entity_data(K_CACHE_WALL).get(coords) 
 
 func get_characters() -> Array:
-	var characters = get_tree().get_nodes_in_group(Const.GROUP_CHARACTER)
-	return characters.filter(func(c): return not is_dead(c) and not is_crystalized(c))
+	return query_coords_entity_data(K_CACHE_CHARACTER).values()
 
 func get_character_at(coords:Vector2i) -> Character:
-	for character:Character in get_characters():
-		if coords == character.get_coords():
-			return character
-	return null
+	return query_coords_entity_data(K_CACHE_CHARACTER).get(coords) 
 
 func get_enemies() -> Array:
-	var enemies = get_tree().get_nodes_in_group(Const.GROUP_ENEMY)
-	return enemies.filter(func(c): return not is_dead(c) and not is_crystalized(c))
+	return query_coords_entity_data(K_CACHE_ENEMY).values()
 
-func get_entities_at_line(src_entity:Entity, dir_norm:Vector2, tolerance:float=0.001) -> Dictionary:
-	var ent := []
-	var nearest : Entity
-	var dist = 10000
-	var origin = Vector2(src_entity.get_coords())
-	for entity:Entity in get_targetable_entites():
-		if src_entity == entity:
-			continue
-		var point = Vector2(entity.get_coords())
-		var v = point-origin
-		var t = v.dot(dir_norm)
-		if t < 0:
-			continue
-		var closest_point = origin + dir_norm * t
-		if not point.distance_to(closest_point) <= tolerance:
-			continue
-		ent.append(entity)
-		var l = v.length()
-		if l < dist:
-			dist = l
-			nearest = entity
-	return {"entities": ent, "nearest":nearest}
-
-func get_nearest_entitiy_at_line(entity:Entity, dir_norm:Vector2i) -> Entity:
-	var data = get_entities_at_line(entity, dir_norm, 0.001)
-	return data.nearest
+func get_nearest_entitiy_at_direction(entity:Entity, dir:Vector2i) -> Entity:
+	var coords := entity.get_coords()
+	var coords_data := query_coords_entity_data(K_CACHE_ALL)
+	var sp := coords+dir
+	for i in coords_data.size():
+		if coords_data.has(sp):
+			return coords_data[sp]
+		sp += dir
+	return null
 
 func get_neighbor_character(coords:Vector2i) -> Array:
+	var data = query_coords_entity_data(K_CACHE_CHARACTER)
 	var characters := []
 	for v in [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]:
-		var nei_character = get_character_at(coords+v)
+		var nei_character = data.get(coords+v)
 		if nei_character:
 			characters.append(nei_character)
 	return characters
 
 func get_entity_at_matrix(coords:Vector2i) -> Array:
-	for entity:Entity in get_targetable_entites():
-		pass
+	#for entity:Entity in get_coords_entity_data():
+		#pass
 	return []
 ## Mechanism
 func get_triggers() -> Array:
