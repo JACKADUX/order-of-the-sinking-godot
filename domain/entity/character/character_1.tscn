@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b88h26t1a3ogf"]
+
+[ext_resource type="PackedScene" uid="uid://biyc0cm3wpghd" path="res://domain/entity/character/character.tscn" id="1_wui6i"]
+
+[node name="Character1" unique_id=1901295413 instance=ExtResource("1_wui6i")]
+
+[node name="Ability" parent="ComponentManager" parent_id_path=PackedInt32Array(1700654357) index="0" unique_id=864236653]
+type = 1
+
+[node name="TextureRect" parent="." index="1" unique_id=2106769502]
+modulate = Color(0.8984375, 0.4071045, 0.4071045, 1)

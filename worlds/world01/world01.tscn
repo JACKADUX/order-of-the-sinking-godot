@@ -1,0 +1,47 @@
+[gd_scene format=4 uid="uid://dc1nqocoiyyw0"]
+
+[ext_resource type="Script" uid="uid://bwgn6ygl6p1bh" path="res://domain/manager/input_manager.gd" id="1_qduhi"]
+[ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="2_tv2ny"]
+[ext_resource type="Script" uid="uid://bhjntgnbgficw" path="res://domain/manager/tilemap_manager.gd" id="3_txcen"]
+[ext_resource type="PackedScene" uid="uid://bx8ljmogs51it" path="res://worlds/world01/level_marker.tscn" id="4_e242g"]
+[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://worlds/wall/wall_tile_map_layer.tscn" id="4_txcen"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="5_iae1e"]
+[ext_resource type="PackedScene" uid="uid://013p0qaouv5s" path="res://worlds/world01/levels/level001.tscn" id="5_tv2ny"]
+
+[node name="World01" type="Node2D" unique_id=1165241096]
+
+[node name="InputManager" type="Node" parent="." unique_id=167722162]
+script = ExtResource("1_qduhi")
+
+[node name="TileMapManager" type="Node2D" parent="." unique_id=753222079 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("3_txcen")
+ground_tilemap = NodePath("GroundTileMapLayer")
+wall_tilemap = NodePath("WallTileMapLayer")
+
+[node name="GroundTileMapLayer" type="TileMapLayer" parent="TileMapManager" unique_id=1584171156]
+show_behind_parent = true
+z_index = -1
+y_sort_enabled = true
+tile_set = ExtResource("2_tv2ny")
+
+[node name="WallTileMapLayer" parent="TileMapManager" unique_id=845189614 instance=ExtResource("4_txcen")]
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAIAAAAAAAEAAgABAAIAAAAAAAIAAgABAAIAAAAAAAMAAgABAAIAAAAAAAQAAgABAAIAAAAAAAUAAgABAAIAAAAAAAYAAgABAAIAAAAAAAcAAgABAAIAAAAAAAgAAgABAAIAAAAAAAkAAgABAAIAAAABAAkAAgABAAIAAAACAAkAAgABAAIAAAADAAkAAgABAAIAAAAEAAkAAgABAAIAAAAFAAkAAgABAAIAAAAGAAkAAgABAAIAAAAHAAkAAgABAAIAAAAIAAkAAgABAAIAAAAJAAkAAgABAAIAAAAJAAgAAgABAAIAAAAJAAcAAgABAAIAAAAJAAYAAgABAAIAAAAJAAUAAgABAAIAAAABAAAAAgABAAIAAAACAAAAAgABAAIAAAADAAAAAgABAAIAAAAEAAAAAgABAAIAAAAFAAAAAgABAAIAAAAGAAAAAgABAAIAAAAHAAAAAgABAAIAAAAIAAAAAgABAAIAAAAJAAAAAgABAAIAAAAJAAEAAgABAAIAAAAJAAIAAgABAAIAAAAJAAMAAgABAAIAAAA=")
+
+[node name="LevelSet" type="Node2D" parent="." unique_id=1568684650]
+
+[node name="LevelMarker" parent="LevelSet" unique_id=919845216 instance=ExtResource("4_e242g")]
+position = Vector2(64, 64)
+level = ExtResource("5_tv2ny")
+activate = true
+
+[node name="LevelMarker2" parent="LevelSet" unique_id=2025535608 instance=ExtResource("4_e242g")]
+position = Vector2(96, 64)
+
+[node name="LevelMarker3" parent="LevelSet" unique_id=789118147 instance=ExtResource("4_e242g")]
+position = Vector2(128, 64)
+
+[node name="Player" parent="." unique_id=1505805866 instance=ExtResource("5_iae1e")]
+unique_name_in_owner = true
+position = Vector2(96, 128)

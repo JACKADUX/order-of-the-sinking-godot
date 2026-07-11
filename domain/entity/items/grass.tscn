@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dd6swmid5y8ha"]
+
+[ext_resource type="Script" uid="uid://dcqf57uoi5owh" path="res://domain/entity/items/grass.gd" id="1_3v0eb"]
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="2_ihsie"]
+[ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://domain/manager/component_manager.gd" id="2_qbcim"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://domain/components/obstacle.gd" id="3_4f1ct"]
+[ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="3_hofmj"]
+[ext_resource type="Script" uid="uid://gc6aow4ry1an" path="res://domain/components/coords.gd" id="3_qvj7r"]
+[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://domain/components/creature.gd" id="4_jmeba"]
+[ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://domain/components/health.gd" id="6_nqjes"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v0eb"]
+atlas = ExtResource("2_ihsie")
+region = Rect2(0, 160, 32, 32)
+script = ExtResource("3_hofmj")
+y = 5
+metadata/_custom_type_script = "uid://08jwjcj2tn1a"
+
+[node name="Grass" type="Node2D" unique_id=859745245]
+script = ExtResource("1_3v0eb")
+
+[node name="ComponentManager" type="Node2D" parent="." unique_id=1287691980]
+script = ExtResource("2_qbcim")
+
+[node name="Coords" type="Node" parent="ComponentManager" unique_id=645662832]
+script = ExtResource("3_qvj7r")
+metadata/_custom_type_script = "uid://gc6aow4ry1an"
+
+[node name="Obstacle" type="Node" parent="ComponentManager" unique_id=1103748958]
+script = ExtResource("3_4f1ct")
+type = 1
+metadata/_custom_type_script = "uid://34l10k1vdopw"
+
+[node name="Creature" type="Node" parent="ComponentManager" unique_id=578556313]
+script = ExtResource("4_jmeba")
+metadata/_custom_type_script = "uid://bxjib3hd2rsas"
+
+[node name="Health" type="Node" parent="ComponentManager" unique_id=80168419]
+script = ExtResource("6_nqjes")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=323719041]
+modulate = Color(1, 1, 1, 0.41568628)
+position = Vector2(0, 4)
+color = Color(0.20703125, 0.20703125, 0.20703125, 1)
+polygon = PackedVector2Array(2, 6, -9, 13, -9, 25, -6, 28, 23, 28, 30, 23, 30, 10)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1864414440]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+texture = SubResource("AtlasTexture_3v0eb")
+centered = false

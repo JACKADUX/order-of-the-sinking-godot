@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://beqay7j2ui0sb"]
-
-[ext_resource type="PackedScene" uid="uid://biyc0cm3wpghd" path="res://entity/character/character.tscn" id="1_yil25"]
-
-[node name="Character2" unique_id=1901295413 instance=ExtResource("1_yil25")]
-
-[node name="Ability" parent="ComponentManager" parent_id_path=PackedInt32Array(1700654357) index="0" unique_id=864236653]
-type = 2

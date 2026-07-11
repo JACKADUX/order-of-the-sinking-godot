@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Order of the Sinking Star"
-run/main_scene="uid://bfvy8ww8g25bp"
+run/main_scene="uid://ddrlmt2acvxok"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -32,15 +32,15 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/at-icons/plugin.cfg")
+enabled=PackedStringArray("res://addons/entity_view/plugin.cfg", "res://addons/icon_quick_access/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://_test/": "red",
 "res://assets/": "yellow",
-"res://entity/": "purple",
-"res://entity/services/": "purple"
+"res://domain/": "purple",
+"res://domain/services/": "purple"
 }
 
 [layer_names]

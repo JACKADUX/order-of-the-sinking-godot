@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://biyc0cm3wpghd"]
+
+[ext_resource type="Script" uid="uid://c8oym2g12yvay" path="res://domain/entity/character/character.gd" id="1_b6my0"]
+[ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://domain/manager/component_manager.gd" id="2_jgacm"]
+[ext_resource type="Script" uid="uid://gc6aow4ry1an" path="res://domain/components/coords.gd" id="3_a4ask"]
+[ext_resource type="Script" uid="uid://2ma8n0pugcxl" path="res://domain/components/ability.gd" id="4_ceslx"]
+[ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://domain/components/obstacle.gd" id="5_a4ask"]
+[ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://domain/components/health.gd" id="5_jgacm"]
+[ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://domain/components/creature.gd" id="7_wwhbt"]
+[ext_resource type="Script" uid="uid://igmj3iy5y6vo" path="res://domain/components/activate.gd" id="8_p5ivt"]
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="9_4wfim"]
+[ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="10_gjpiq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xsq3"]
+resource_local_to_scene = true
+atlas = ExtResource("9_4wfim")
+region = Rect2(0, 224, 32, 32)
+script = ExtResource("10_gjpiq")
+y = 7
+metadata/_custom_type_script = "uid://08jwjcj2tn1a"
+
+[node name="Character" type="Node2D" unique_id=1901295413]
+script = ExtResource("1_b6my0")
+
+[node name="ComponentManager" type="Node2D" parent="." unique_id=264652246]
+script = ExtResource("2_jgacm")
+
+[node name="Ability" type="Node" parent="ComponentManager" unique_id=864236653]
+script = ExtResource("4_ceslx")
+metadata/_custom_type_script = "uid://2ma8n0pugcxl"
+
+[node name="Coords" type="Node" parent="ComponentManager" unique_id=1715496236]
+script = ExtResource("3_a4ask")
+metadata/_custom_type_script = "uid://gc6aow4ry1an"
+
+[node name="Obstacle" type="Node" parent="ComponentManager" unique_id=366363401]
+script = ExtResource("5_a4ask")
+type = 3
+metadata/_custom_type_script = "uid://34l10k1vdopw"
+
+[node name="Health" type="Node" parent="ComponentManager" unique_id=1008462022]
+script = ExtResource("5_jgacm")
+metadata/_custom_type_script = "uid://bqr5hujuxeivx"
+
+[node name="Creature" type="Node" parent="ComponentManager" unique_id=97497585]
+script = ExtResource("7_wwhbt")
+metadata/_custom_type_script = "uid://bxjib3hd2rsas"
+
+[node name="Activate" type="Node" parent="ComponentManager" unique_id=726838104]
+script = ExtResource("8_p5ivt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=640780680]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+texture = SubResource("AtlasTexture_7xsq3")
+centered = false

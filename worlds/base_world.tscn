@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ddrlmt2acvxok"]
+
+[ext_resource type="Script" uid="uid://bwgn6ygl6p1bh" path="res://domain/manager/input_manager.gd" id="1_1ja0i"]
+[ext_resource type="Script" uid="uid://dw3d7g2y2ijjs" path="res://domain/application/world_application.gd" id="1_c7o8e"]
+[ext_resource type="Script" uid="uid://bhjntgnbgficw" path="res://domain/manager/tilemap_manager.gd" id="2_c7o8e"]
+[ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="3_t31nu"]
+[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://worlds/wall/wall_tile_map_layer.tscn" id="4_l38ux"]
+[ext_resource type="Script" uid="uid://03whukfkr1y4" path="res://domain/manager/entity_manager.gd" id="5_1j2bq"]
+
+[node name="BaseWorld" type="Node2D" unique_id=1191664350]
+
+[node name="Application" type="Node" parent="." unique_id=1666339984]
+script = ExtResource("1_c7o8e")
+active_character_index = 0
+
+[node name="InputManager" type="Node2D" parent="." unique_id=2060104703]
+script = ExtResource("1_1ja0i")
+
+[node name="TileMapManager" type="Node2D" parent="." unique_id=432579976 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
+script = ExtResource("2_c7o8e")
+ground_tilemap = NodePath("GroundTileMapLayer")
+wall_tilemap = NodePath("WallTileMapLayer")
+
+[node name="GroundTileMapLayer" type="TileMapLayer" parent="TileMapManager" unique_id=1065113669]
+show_behind_parent = true
+z_index = -1
+y_sort_enabled = true
+tile_set = ExtResource("3_t31nu")
+
+[node name="WallTileMapLayer" parent="TileMapManager" unique_id=845189614 instance=ExtResource("4_l38ux")]
+
+[node name="EntityManager" type="Node2D" parent="." unique_id=498805642]
+y_sort_enabled = true
+script = ExtResource("5_1j2bq")

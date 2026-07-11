@@ -1,0 +1,95 @@
+[gd_scene format=4 uid="uid://bfvy8ww8g25bp"]
+
+[ext_resource type="Script" uid="uid://bwgn6ygl6p1bh" path="res://domain/manager/input_manager.gd" id="1_u1tmu"]
+[ext_resource type="Script" uid="uid://bhjntgnbgficw" path="res://domain/manager/tilemap_manager.gd" id="2_3efhs"]
+[ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="3_0uivh"]
+[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://worlds/wall/wall_tile_map_layer.tscn" id="4_wcq6i"]
+[ext_resource type="Script" uid="uid://03whukfkr1y4" path="res://domain/manager/entity_manager.gd" id="5_vd7f8"]
+[ext_resource type="PackedScene" uid="uid://bumfm7xfd5hwq" path="res://domain/entity/mechanism/door.tscn" id="6_3sngp"]
+[ext_resource type="PackedScene" uid="uid://ceyxearq1tjj5" path="res://domain/entity/mechanism/pressure_plate.tscn" id="7_ksjor"]
+[ext_resource type="Script" uid="uid://c4rbl6p1mvj8u" path="res://component/debug_label/entity_debugger.gd" id="8_p3h7v"]
+[ext_resource type="PackedScene" uid="uid://cpxlede0lnmw7" path="res://domain/entity/mechanism/enemy_counter.tscn" id="9_42o0c"]
+[ext_resource type="PackedScene" uid="uid://dm0unojkgrjy8" path="res://domain/entity/enemy/enemy.tscn" id="10_6cxd4"]
+[ext_resource type="PackedScene" uid="uid://caklk028v5vpf" path="res://domain/entity/items/rock.tscn" id="11_22fa5"]
+[ext_resource type="PackedScene" uid="uid://dd6swmid5y8ha" path="res://domain/entity/items/grass.tscn" id="12_28uwk"]
+[ext_resource type="PackedScene" uid="uid://b88h26t1a3ogf" path="res://domain/entity/character/character_1.tscn" id="13_wmw1g"]
+[ext_resource type="PackedScene" uid="uid://beqay7j2ui0sb" path="res://domain/entity/character/character_2.tscn" id="14_i3e56"]
+[ext_resource type="PackedScene" uid="uid://pi3xqskrefv1" path="res://domain/entity/character/character_3.tscn" id="15_cskbp"]
+[ext_resource type="PackedScene" uid="uid://ri16qcx36vo6" path="res://domain/entity/character/character_4.tscn" id="16_wughr"]
+[ext_resource type="PackedScene" uid="uid://bkdq0j4g81wax" path="res://domain/entity/character/character_5.tscn" id="17_p83gv"]
+[ext_resource type="PackedScene" uid="uid://vkrlpfvcrnl2" path="res://domain/entity/character/character_6.tscn" id="18_fjvm6"]
+
+[node name="TestWorld02" type="Node2D" unique_id=253937265]
+
+[node name="InputManager" type="Node2D" parent="." unique_id=1893682697 node_paths=PackedStringArray("entity_manager", "tilemap_manager")]
+script = ExtResource("1_u1tmu")
+entity_manager = NodePath("../EntityManager")
+tilemap_manager = NodePath("../TileMapManager")
+active_character_index = 5
+
+[node name="TileMapManager" type="Node2D" parent="." unique_id=235764918 node_paths=PackedStringArray("ground_tilemap", "wall_tilemap")]
+script = ExtResource("2_3efhs")
+ground_tilemap = NodePath("GroundTileMapLayer")
+wall_tilemap = NodePath("WallTileMapLayer")
+
+[node name="GroundTileMapLayer" type="TileMapLayer" parent="TileMapManager" unique_id=1956547349]
+show_behind_parent = true
+z_index = -1
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAADAAYAAAACAAAAAAAEAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAACAAAAAAAGAAcAAAACAAAAAAAFAAcAAAACAAAAAAAEAAcAAAACAAAAAAADAAcAAAACAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAABAAUAAAABAAAAAAABAAYAAAABAAAAAAABAAcAAAABAAAAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAACAAYAAAABAAAAAAACAAUAAAABAAAAAAACAAQAAAABAAAAAAACAAMAAAABAAAAAAACAAIAAAABAAAAAAACAAEAAAABAAAAAAADAAEAAAABAAAAAAAEAAEAAAABAAAAAAAFAAEAAAABAAAAAAAGAAEAAAABAAAAAAAHAAEAAAABAAAAAAAIAAEAAAABAAAAAAAIAAIAAAABAAAAAAAHAAIAAAABAAAAAAAGAAIAAAABAAAAAAAFAAIAAAABAAAAAAAEAAIAAAABAAAAAAADAAIAAAABAAAAAAADAAMAAAABAAAAAAAEAAMAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAABAAAAAAAHAAMAAAABAAAAAAAIAAMAAAABAAAAAAAIAAQAAAABAAAAAAAHAAQAAAABAAAAAAAGAAQAAAABAAAAAAAFAAQAAAABAAAAAAAEAAQAAAABAAAAAAADAAQAAAABAAAAAAADAAUAAAABAAAAAAAEAAUAAAABAAAAAAAFAAUAAAABAAAAAAAGAAUAAAABAAAAAAAHAAUAAAABAAAAAAAIAAUAAAABAAAAAAAIAAYAAAABAAAAAAAHAAYAAAABAAAAAAAHAAcAAAABAAAAAAAHAAgAAAABAAAAAAAIAAcAAAABAAAAAAAIAAgAAAABAAAAAAAGAAgAAAABAAAAAAAFAAgAAAABAAAAAAAEAAgAAAABAAAAAAADAAgAAAABAAAAAAAAAAgAAAABAAAAAAAAAAcAAAABAAAAAAAAAAYAAAABAAAAAAAAAAUAAAABAAAAAAAAAAQAAAABAAAAAAAAAAMAAAABAAAAAAAAAAIAAAABAAAAAAAAAAEAAAABAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAJAAEAAAABAAAAAAAJAAIAAAABAAAAAAAJAAMAAAABAAAAAAAJAAQAAAABAAAAAAAJAAUAAAABAAAAAAAJAAYAAAABAAAAAAAJAAcAAAABAAAAAAAJAAgAAAABAAAAAAAJAAkAAAABAAAAAAAIAAkAAAABAAAAAAAHAAkAAAABAAAAAAAGAAkAAAABAAAAAAAFAAkAAAABAAAAAAAEAAkAAAABAAAAAAADAAkAAAABAAAAAAACAAkAAAABAAAAAAABAAkAAAABAAAAAAAAAAkAAAABAAAAAAACAAcAAAABAAAAAAA=")
+tile_set = ExtResource("3_0uivh")
+
+[node name="WallTileMapLayer" parent="TileMapManager" unique_id=845189614 instance=ExtResource("4_wcq6i")]
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAIAAAAAAAEAAgABAAIAAAAAAAIAAgABAAIAAAAAAAMAAgABAAIAAAAAAAQAAgABAAIAAAABAAAAAgABAAIAAAACAAAAAgABAAIAAAADAAAAAgABAAIAAAAEAAAAAgABAAIAAAAFAAAAAgABAAIAAAAGAAAAAgABAAIAAAAHAAAAAgABAAIAAAAIAAAAAgABAAIAAAAJAAAAAgABAAIAAAAJAAEAAgABAAIAAAAJAAIAAgABAAIAAAAJAAMAAgABAAIAAAAJAAQAAgABAAIAAAAJAAUAAgABAAIAAAAJAAYAAgABAAIAAAAJAAcAAgABAAIAAAAJAAgAAgABAAIAAAAJAAkAAgABAAIAAAAIAAkAAgABAAIAAAAHAAkAAgABAAIAAAAGAAkAAgABAAIAAAAFAAkAAgABAAIAAAAEAAkAAgABAAIAAAADAAkAAgABAAIAAAACAAkAAgABAAIAAAABAAkAAgABAAIAAAAAAAkAAgABAAIAAAAAAAUAAgABAAIAAAAAAAYAAgABAAIAAAAAAAcAAgABAAIAAAAAAAgAAgABAAIAAAA=")
+
+[node name="EntityManager" type="Node2D" parent="." unique_id=965366357]
+y_sort_enabled = true
+script = ExtResource("5_vd7f8")
+
+[node name="Door" parent="EntityManager" unique_id=1682633432 instance=ExtResource("6_3sngp")]
+position = Vector2(160, 96)
+
+[node name="PressurePlate" parent="EntityManager/Door" unique_id=1969265763 instance=ExtResource("7_ksjor")]
+position = Vector2(-64, 0)
+
+[node name="PressurePlate2" parent="EntityManager/Door" unique_id=2124776216 instance=ExtResource("7_ksjor")]
+position = Vector2(-32, 32)
+
+[node name="EntityDebugger" type="Node" parent="EntityManager/Door" unique_id=2146862516]
+script = ExtResource("8_p3h7v")
+
+[node name="Door2" parent="EntityManager" unique_id=1875842035 instance=ExtResource("6_3sngp")]
+modulate = Color(0.921875, 0, 1, 1)
+position = Vector2(224, 192)
+
+[node name="EnemyCounter" parent="EntityManager/Door2" unique_id=1115247001 instance=ExtResource("9_42o0c")]
+
+[node name="Enemy" parent="EntityManager" unique_id=71826711 instance=ExtResource("10_6cxd4")]
+position = Vector2(192, 128)
+
+[node name="Rock" parent="EntityManager" unique_id=632925535 instance=ExtResource("11_22fa5")]
+position = Vector2(96, 96)
+
+[node name="Rock2" parent="EntityManager" unique_id=988966462 instance=ExtResource("11_22fa5")]
+position = Vector2(160, 128)
+
+[node name="Grass" parent="EntityManager" unique_id=859745245 instance=ExtResource("12_28uwk")]
+position = Vector2(64, 96)
+
+[node name="Character1" parent="EntityManager" unique_id=1901295413 instance=ExtResource("13_wmw1g")]
+position = Vector2(160, 64)
+
+[node name="Character2" parent="EntityManager" unique_id=1598676439 instance=ExtResource("14_i3e56")]
+position = Vector2(64, 192)
+
+[node name="Character3" parent="EntityManager" unique_id=2002712342 instance=ExtResource("15_cskbp")]
+position = Vector2(32, 160)
+
+[node name="Character4" parent="EntityManager" unique_id=1530454921 instance=ExtResource("16_wughr")]
+position = Vector2(192, 64)
+
+[node name="Character5" parent="EntityManager" unique_id=1431702137 instance=ExtResource("17_p83gv")]
+position = Vector2(128, 96)
+
+[node name="Character6" parent="EntityManager" unique_id=501712712 instance=ExtResource("18_fjvm6")]
+position = Vector2(64, 64)

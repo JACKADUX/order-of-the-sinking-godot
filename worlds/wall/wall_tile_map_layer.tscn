@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dn82eqfec0de8"]
+
+[ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="1_hpi2k"]
+[ext_resource type="Script" uid="uid://dvu6b42l0tl3k" path="res://worlds/wall/wall_shadow.gd" id="2_mnrhw"]
+[ext_resource type="Script" uid="uid://c085tkg70jllh" path="res://worlds/wall/wall_roof_tile.gd" id="3_oq1rn"]
+
+[node name="WallTileMapLayer" type="TileMapLayer" unique_id=845189614]
+y_sort_enabled = true
+tile_set = ExtResource("1_hpi2k")
+
+[node name="WallShadow" type="TileMapLayer" parent="." unique_id=313806305]
+modulate = Color(1, 1, 1, 0.49411765)
+z_index = -1
+y_sort_enabled = true
+tile_set = ExtResource("1_hpi2k")
+script = ExtResource("2_mnrhw")
+
+[node name="WallRoof" type="TileMapLayer" parent="." unique_id=604097114]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, 16)
+tile_set = ExtResource("1_hpi2k")
+script = ExtResource("3_oq1rn")

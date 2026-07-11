@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ceyxearq1tjj5"]
+
+[ext_resource type="Script" uid="uid://4cmvyqpevedp" path="res://domain/entity/mechanism/pressure_plate.gd" id="1_edy8u"]
+[ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://domain/manager/component_manager.gd" id="2_ulsii"]
+[ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="3_7mv7g"]
+[ext_resource type="Script" uid="uid://gc6aow4ry1an" path="res://domain/components/coords.gd" id="3_7n3n7"]
+[ext_resource type="Script" uid="uid://igmj3iy5y6vo" path="res://domain/components/activate.gd" id="4_qs60l"]
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="5_ulsii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdhd7"]
+resource_local_to_scene = true
+atlas = ExtResource("5_ulsii")
+region = Rect2(0, 32, 32, 32)
+script = ExtResource("3_7mv7g")
+y = 1
+metadata/_custom_type_script = "uid://08jwjcj2tn1a"
+
+[node name="PressurePlate" type="Node2D" unique_id=1969265763]
+script = ExtResource("1_edy8u")
+
+[node name="ComponentManager" type="Node2D" parent="." unique_id=293565341]
+script = ExtResource("2_ulsii")
+metadata/_custom_type_script = "uid://caxe2fuoiysb2"
+
+[node name="Coords" type="Node" parent="ComponentManager" unique_id=1040479226]
+script = ExtResource("3_7n3n7")
+metadata/_custom_type_script = "uid://gc6aow4ry1an"
+
+[node name="Activate" type="Node" parent="ComponentManager" unique_id=1058795562]
+script = ExtResource("4_qs60l")
+metadata/_custom_type_script = "uid://igmj3iy5y6vo"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=917920921]
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_xdhd7")
+centered = false
