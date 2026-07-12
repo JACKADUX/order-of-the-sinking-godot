@@ -1,15 +1,12 @@
 class_name MoveService extends Service
 
-var tilemap_manager:TileMapManager
-var entity_manager:EntityManager
-
-func _init(app:Application) -> void:
-	entity_manager = app.get_manager(EntityManager)
-	tilemap_manager = app.get_manager(TileMapManager)
 
 func can_move_to_this_coords(entity:Entity, coords:Vector2i) -> bool:
 	if tilemap_manager.is_wall(coords) or entity_manager.get_wall_entity_at(coords):
 		return false
+	var under_water_entity = entity_manager.get_under_water_entity(coords)
+	if tilemap_manager.is_water(coords) and under_water_entity and entity_manager.is_supportable(under_water_entity):
+		return true
 	if entity is Character:
 		return not tilemap_manager.is_water(coords)
 	return true
@@ -66,6 +63,7 @@ func push(entity:Entity, dir:Vector2i, power:int=0):
 	var other_entity = entity_manager.get_entity_at(target_coords)
 	if not other_entity or try_slide(other_entity, dir, power):
 		entity.move_to(target_coords)
+		entity.set_direction(dir)
 
 func pull(entity:Entity, dir:Vector2i):
 	if not can_move_to_this_coords(entity, entity.get_coords() + dir):
@@ -79,20 +77,23 @@ func pull(entity:Entity, dir:Vector2i):
 	other_entity = entity_manager.get_movable_entity_at(back_coords)
 	if other_entity:
 		other_entity.move_to(current_coords)
+		entity.set_direction(dir)
 
 func teleport(entity:Entity, dir:Vector2i):
-	if not can_move_to_this_coords(entity, entity.get_coords() + dir):
+	var coords := entity.get_coords()
+	var target_coords := coords+dir
+	if not can_move_to_this_coords(entity, target_coords):
 		return false
-	var current_coords := entity.get_coords()
-	var other_entity := entity_manager.get_nearest_entitiy_at_direction(entity, dir)
+	var other_entity := entity_manager.get_nearest_entitiy_at_direction(coords, dir)
 	if other_entity:
 		var obstacle :Obstacle = other_entity.get_component(Obstacle)
 		if obstacle and obstacle.is_wall():
 			return			
 		entity.set_coords(other_entity.get_coords())
-		other_entity.set_coords(current_coords)
+		other_entity.set_coords(coords)
 	else:
-		entity.move_to(current_coords+dir)
+		entity.move_to(target_coords)
+	entity.set_direction(dir)
 
 func follow(entity:Entity, dir:Vector2i, offset:=Vector2i(2,2)):
 	var coords := entity.get_coords()
@@ -123,7 +124,7 @@ func follow(entity:Entity, dir:Vector2i, offset:=Vector2i(2,2)):
 	# NOTE: 因为cache不会实时刷新，所以需要在计算完成后统一移动，否则会出错
 	for move_entity in move_entities:	
 		move_entity.move_to(move_entity.get_coords()+dir)
-
+	entity.set_direction(dir)
 
 func morph(entity:Entity, dir:Vector2i):
 	var coords := entity.get_coords()+ dir
@@ -137,7 +138,11 @@ func morph(entity:Entity, dir:Vector2i):
 		if creature and obstacle:
 			var crystalized := creature.is_crystalized()
 			creature.set_crystalize(not crystalized)
+			obstacle.set_supportable(not crystalized)
+			entity.set_direction(dir)
 		return
 	if not can_move_to_this_coords(entity,  coords):
 		return 
 	entity.move_to(coords)
+	entity.set_direction(dir)
+	

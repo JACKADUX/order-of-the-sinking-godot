@@ -2,6 +2,7 @@
 @abstract
 class_name Entity extends Node2D
 
+@export var direction:=Const.Direction.RIGHT
 @export var component_manager:ComponentManager
 
 var _id := UUID.v4()
@@ -15,11 +16,16 @@ func _exit_tree() -> void:
 	remove_from_group(Const.GROUP_ENTITY)
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return 
 	if not visible:
 		queue_free()
 
 func get_id() -> String:
 	return _id
+
+func has_component(script:GDScript) -> bool:
+	return component_manager.has_component(script) if component_manager else false
 
 func get_component(script:GDScript) -> Component:
 	if not component_manager:
@@ -38,13 +44,28 @@ func set_data(data:Dictionary):
 	component_manager.set_data(data.get("component_data", {}))
 
 func get_coords() -> Vector2i:
-	var coords = get_component(Coords)
-	return Vector2i.ZERO if not coords else coords.get_coords()
+	var entity_transform :Transform= get_component(Transform)
+	return Vector2i.ZERO if not entity_transform else entity_transform.get_coords()
 
 func set_coords(value:Vector2i):
-	var coords = get_component(Coords)
-	if coords:
-		coords.set_value("coords", value)
+	var entity_transform :Transform= get_component(Transform)
+	entity_transform.set_coords(value)
+
+func get_direction() -> Vector2i:
+	var entity_transform :Transform= get_component(Transform)
+	return Vector2i.RIGHT if not entity_transform else entity_transform.get_direction() 
+
+func set_direction(value:Vector2i):
+	var entity_transform :Transform= get_component(Transform)
+	entity_transform.set_direction(value)
+
+func get_zdepth() -> int:
+	var entity_transform :Transform= get_component(Transform)
+	return 0 if not entity_transform else entity_transform.get_zdepth()
+
+func set_zdepth(value:int):
+	var entity_transform :Transform= get_component(Transform)
+	entity_transform.set_zdepth(value)
 
 func move_to(coords:Vector2i):
 	set_coords(coords)
@@ -56,16 +77,21 @@ func move_to(coords:Vector2i):
 
 func update_with(component:Component, _key:=""):
 	# WARNING : 覆写该方法时记得 super(...) 否则可能会造成实体无法移动的情况
-	if component is Coords:
+	if component is Transform:
 		global_position = component.get_coords()*Const.TILE
+		queue_redraw()
 	elif component is Health:
 		if component.is_dead():
 			modulate.a = 0.5
 		else:
 			modulate.a = 1
 
+func _draw() -> void:
+	var center = Vector2i.ONE*Const.HALF_TILE
+	draw_circle(center+get_direction()*Const.HALF_TILE, 2, Color.GREEN)
 			
 				
 func handle_event(event:BaseEvent):
 	if event is Events.InitEvent:
 		set_coords(Vector2i(floor(global_position / Const.TILE)))
+		set_direction(Const.DIRECTIONS[direction])

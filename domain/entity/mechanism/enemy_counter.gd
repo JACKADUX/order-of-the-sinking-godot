@@ -1,6 +1,5 @@
 class_name EnemyCounter extends MechanismTrigger
 
-func check(entity_manager:EntityManager):
+func check_mechanism(service:MechanismService):
 	var activate :Activate= get_component(Activate)
-	var alive_enemies_count = entity_manager.get_enemies().size()
-	activate.set_activate(alive_enemies_count == 0)
+	activate.set_activate(service.enemy_all_dead())

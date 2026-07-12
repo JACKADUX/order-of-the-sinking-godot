@@ -9,15 +9,10 @@
 [ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://domain/components/creature.gd" id="7_wwhbt"]
 [ext_resource type="Script" uid="uid://igmj3iy5y6vo" path="res://domain/components/activate.gd" id="8_p5ivt"]
 [ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="9_4wfim"]
-[ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="10_gjpiq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7xsq3"]
-resource_local_to_scene = true
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jkxv"]
 atlas = ExtResource("9_4wfim")
-region = Rect2(0, 224, 32, 32)
-script = ExtResource("10_gjpiq")
-y = 7
-metadata/_custom_type_script = "uid://08jwjcj2tn1a"
+region = Rect2(0, 272, 32, 48)
 
 [node name="Character" type="Node2D" unique_id=1901295413]
 script = ExtResource("1_b6my0")
@@ -29,7 +24,7 @@ script = ExtResource("2_jgacm")
 script = ExtResource("4_ceslx")
 metadata/_custom_type_script = "uid://2ma8n0pugcxl"
 
-[node name="Coords" type="Node" parent="ComponentManager" unique_id=1715496236]
+[node name="Transform" type="Node" parent="ComponentManager" unique_id=1715496236]
 script = ExtResource("3_a4ask")
 metadata/_custom_type_script = "uid://gc6aow4ry1an"
 
@@ -40,6 +35,7 @@ metadata/_custom_type_script = "uid://34l10k1vdopw"
 
 [node name="Health" type="Node" parent="ComponentManager" unique_id=1008462022]
 script = ExtResource("5_jgacm")
+attackable = true
 metadata/_custom_type_script = "uid://bqr5hujuxeivx"
 
 [node name="Creature" type="Node" parent="ComponentManager" unique_id=97497585]
@@ -51,6 +47,6 @@ script = ExtResource("8_p5ivt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=640780680]
 unique_name_in_owner = true
-position = Vector2(0, -5)
-texture = SubResource("AtlasTexture_7xsq3")
+position = Vector2(0, -16)
+texture = SubResource("AtlasTexture_8jkxv")
 centered = false

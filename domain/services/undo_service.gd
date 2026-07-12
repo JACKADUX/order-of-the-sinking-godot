@@ -2,11 +2,6 @@ class_name UndoService extends Service
 
 var undo_datas := []
 
-var entity_manager:EntityManager
-
-func _init(app:Application) -> void:
-	entity_manager = app.get_manager(EntityManager)
-
 func clear():
 	undo_datas.clear()
 
@@ -23,7 +18,7 @@ func add_undo(before_datas:Array):
 		
 func collect_datas() -> Array:
 	var datas = []
-	for item in entity_manager.get_entities():
+	for item in entity_manager.get_all_entities():
 		datas.append(item.get_data())
 	return datas
 
@@ -35,10 +30,21 @@ func apply_datas(datas:Array):
 			continue
 		item.set_data(data)
 
+func get_history_count() -> int:
+	return undo_datas.size()
+
 func undo():
-	if undo_datas.is_empty(): return 
-	apply_datas(undo_datas.pop_back())
+	if undo_datas.size() == 1: 
+		apply_datas(undo_datas[0]) # NOTE : 总是保留初始状态
+	else:
+		apply_datas(undo_datas.pop_back())
 	notify_changed()
 
+func reset():
+	if undo_datas.size() != 1:
+		add_undo(collect_datas())
+		apply_datas(undo_datas[0])
+	notify_changed()
+	
 func notify_changed():
 	raise_event(Events.DataChangedEvent.new())

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cmcmq82djqssn"]
+
+[ext_resource type="PackedScene" uid="uid://dm0unojkgrjy8" path="res://domain/entity/enemy/enemy.tscn" id="1_6ivfd"]
+[ext_resource type="Script" uid="uid://bmu6llg2axvic" path="res://domain/entity/enemy/dragon.gd" id="2_f75s8"]
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="3_tr6u3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7bwh"]
+atlas = ExtResource("3_tr6u3")
+region = Rect2(32, 192, 32, 32)
+
+[node name="Dragon" unique_id=1323273176 instance=ExtResource("1_6ivfd")]
+script = ExtResource("2_f75s8")
+
+[node name="Sprite2D" parent="." index="1" unique_id=840581968]
+texture = SubResource("AtlasTexture_e7bwh")

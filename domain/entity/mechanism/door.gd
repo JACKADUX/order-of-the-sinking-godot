@@ -14,7 +14,7 @@ func update_with(component:Component, key:=""):
 		sprite_2d.texture.x = 1 if component.is_activated() else 0
 			
 	
-func check():
+func check_mechanism(_service:MechanismService):
 	if triggers.is_empty(): 
 		# NOTE: 没有 triggers 就保持现状
 		return 

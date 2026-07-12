@@ -1,25 +1,22 @@
 class_name BattleService extends Service
 
-var entity_manager:EntityManager
-
-func _init(app:Application) -> void:
-	entity_manager = app.get_manager(EntityManager)
-	
 func update():
-	var characters := entity_manager.get_characters()
-	var enemies := entity_manager.get_enemies()
-	var all_targets := enemies+characters
-	
-	for enemy:Enemy in enemies:
-		for target :Entity in all_targets:
-			if target == enemy:
-				continue
-			line_hurt(enemy, target)
-			
-func simple_hurt(enemy:Enemy, target_entity:Entity):
-	if Vector2(target_entity.get_coords()-enemy.get_coords()).length() <= 1:
-		target_entity.get_component(Health).take_damage(1)
+	for enemy:Enemy in entity_manager.get_enemies():
+		enemy.check_battle(self)
 
-func line_hurt(enemy:Enemy, target_entity:Entity):
-	if entity_manager.get_nearest_entitiy_at_direction(enemy, Vector2i.UP) == target_entity:
-		target_entity.get_component(Health).take_damage(1)
+func attack(entity:Entity, damage:int=1) -> bool:
+	if not entity:
+		return false
+	var health :Health= entity.get_component(Health)
+	if not health or not health.is_attackable():
+		return false
+	health.take_damage(damage)
+	return true
+	
+func neighbor_attack(coords:Vector2i):
+	for entity:Entity in entity_manager.get_neighbor_entities(coords):
+		attack(entity)
+
+func line_attack(coords:Vector2i, dir:Vector2i):
+	var entity = entity_manager.get_nearest_entitiy_at_direction(coords, dir)
+	attack(entity)

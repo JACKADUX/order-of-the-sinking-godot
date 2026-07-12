@@ -28,6 +28,7 @@ metadata/_custom_type_script = "uid://gc6aow4ry1an"
 [node name="Obstacle" type="Node" parent="ComponentManager" unique_id=1428199243]
 script = ExtResource("4_01i6h")
 type = 3
+supportable = true
 metadata/_custom_type_script = "uid://34l10k1vdopw"
 
 [node name="Health" type="Node" parent="ComponentManager" unique_id=336893275]
@@ -40,11 +41,7 @@ position = Vector2(0, 4)
 color = Color(0.20703125, 0.20703125, 0.20703125, 1)
 polygon = PackedVector2Array(27, 11, 11, 7, -8, 14, -10, 20, -4, 27, 8, 28, 25, 22)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1606910489]
-offset_top = -5.0
-offset_right = 32.0
-offset_bottom = 27.0
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2049446035]
+unique_name_in_owner = true
+position = Vector2(16, 11)
 texture = SubResource("AtlasTexture_j7ry7")
-expand_mode = 1
-stretch_mode = 5
-metadata/_edit_group_ = true

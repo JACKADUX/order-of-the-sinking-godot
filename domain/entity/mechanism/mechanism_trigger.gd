@@ -7,5 +7,5 @@ func _ready() -> void:
 func is_activated() -> bool:
 	return get_component(Activate).is_activated()
 
-func check(entity_manager:EntityManager):
+func check_mechanism(service:MechanismService):
 	pass

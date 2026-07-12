@@ -8,5 +8,5 @@ func _enter_tree() -> void:
 func is_activated() -> bool:
 	return get_component(Activate).is_activated()
 
-func check():
+func check_mechanism(service:MechanismService):
 	pass

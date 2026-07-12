@@ -1,6 +1,9 @@
 class_name Const extends RefCounted
 
-const TILE := 32
+enum Direction {LEFT, UP, RIGHT, DOWN}
+const DIRECTIONS :=[Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
+const TILE :int= 32
+const HALF_TILE := int(TILE*0.5)
 
 const IM_MOVE := "MOVE"
 const IM_LEFT := "LEFT"
@@ -22,7 +25,6 @@ const GROUP_MECHANISM_TRIGGER := "GROUP_MECHANISM_TRIGGER"  # 触发器
 const GROUP_MECHANISM_ACTUATOR := "GROUP_MECHANISM_ACTUATOR" # 执行器
 
 const GROUP_LEVEL_MARKER := "GROUP_LEVEL_MARKER"
-
 
 #static func get_level_markers() -> Array:
 	#return Engine.get_main_loop().get_nodes_in_group(GROUP_LEVEL_MARKER)

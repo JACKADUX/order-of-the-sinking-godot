@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ge42d0tdcqqo"]
+
+[ext_resource type="PackedScene" uid="uid://dm0unojkgrjy8" path="res://domain/entity/enemy/enemy.tscn" id="1_2p1kd"]
+[ext_resource type="Script" uid="uid://cc8jp1iuejh7y" path="res://domain/entity/enemy/coyote.gd" id="2_bd5vt"]
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="3_jnw11"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n80rg"]
+atlas = ExtResource("3_jnw11")
+region = Rect2(0, 192, 32, 32)
+
+[node name="CoyoteEnemy" unique_id=71826711 instance=ExtResource("1_2p1kd")]
+script = ExtResource("2_bd5vt")
+
+[node name="Sprite2D" parent="." index="1" unique_id=840581968]
+texture = SubResource("AtlasTexture_n80rg")

@@ -53,8 +53,7 @@ func set_data(data:Dictionary):
 
 ## 
 func handle_value_changed(component:Component, key:String):
-	var entity = owner
-	entity.update_with(component, key)
+	owner.update_with(component, key)
 
 
 

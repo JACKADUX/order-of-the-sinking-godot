@@ -1,12 +1,5 @@
 class_name MechanismService extends Service
 
-var entity_manager:EntityManager
-var tilemap_manager:TileMapManager
-
-func _init(app:Application) -> void:
-	entity_manager = app.get_manager(EntityManager)
-	tilemap_manager = app.get_manager(TileMapManager)
-
 func update():
 	trigger_check()
 	actuator_check()
@@ -14,11 +7,11 @@ func update():
 						
 func trigger_check():
 	for trigger : MechanismTrigger in entity_manager.get_triggers():
-		trigger.check(entity_manager)
+		trigger.check_mechanism(self)
 
 func actuator_check():
 	for actuator :MechanismActuator in entity_manager.get_actuators():
-		actuator.check()
+		actuator.check_mechanism(self)
 		
 func door_smash_check():
 	var coords_data = entity_manager.query_coords_entity_data(EntityManager.K_CACHE_ALL)
@@ -39,4 +32,13 @@ func door_smash_check():
 	if is_character:
 		raise_event(Events.CharacterDeadEvent.new())
 	raise_event(Events.DataChangedEvent.new())
+
+
+## Trigger
+func entity_above(coords:Vector2i) -> bool:
+	return entity_manager.get_entity_at(coords) != null
+
+func enemy_all_dead() -> bool:
+	return entity_manager.get_enemies().size() == 0
+
 	

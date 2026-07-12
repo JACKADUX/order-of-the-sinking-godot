@@ -8,6 +8,7 @@ var battle_service : BattleService
 var mechanism_service : MechanismService
 var buff_service : BuffService
 var action_service : ActionService
+var zdepth_service : ZDepthService
 
 var input_manager : InputManager
 var tilemap_manager : TileMapManager
@@ -15,6 +16,7 @@ var entity_manager : EntityManager
 
 func debug_info():
 	DebugLabel.set_value("Character", active_character_index)
+	DebugLabel.set_value("history_count", undo_service.get_history_count())
 
 func _ready() -> void:
 	if not get_tree().root.is_node_ready():
@@ -22,6 +24,7 @@ func _ready() -> void:
 	init_managers()
 	init_services()
 	init_system.call_deferred()
+	debug_info.call_deferred()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -44,40 +47,43 @@ func init_services():
 	mechanism_service = register_service(MechanismService.new(self))
 	buff_service = register_service(BuffService.new(self))
 	action_service = register_service(ActionService.new(self))
+	zdepth_service = register_service(ZDepthService.new(self))
 
 func init_system():
 	undo_service.clear()
 	entity_manager.propagate_event_to_entity(Events.InitEvent.new())
 	switch_character(active_character_index)
+	undo_service.reset()
 	handle_event(Events.DataChangedEvent.new())
 
 func handle_event(event:BaseEvent):
 	if event is Events.UserInputEvent:
 		handle_user_input_event(event.action, event.data)
 	if event is Events.DataChangedEvent:
-		update_services()
+		entity_manager.propagate_event_to_entity(Events.DataChangedEvent.new())
 
 func update_services():
 	entity_manager.update_coords_entity_cache()
+	zdepth_service.update()
 	buff_service.update()
 	mechanism_service.update()
 	battle_service.update()
-	entity_manager.propagate_event_to_entity(Events.DataChangedEvent.new())
 	
-
+	
 ## User Inputs ----
 func handle_user_input_event(action:String, data:={}):
 	match action:
 		Const.IM_UNDO:
 			undo_service.undo()
 		Const.IM_RESET:
-			get_tree().reload_current_scene.call_deferred()
+			undo_service.reset()
 		Const.IM_SWITCH_CHARACTER:
 			switch_character(data.get("index", active_character_index))
 		Const.IM_MOVE:
 			character_movement(data.get("dir", Vector2i.ZERO))
 		Const.IM_ACTION:
 			apply_action()
+			
 
 func switch_character(character_index:int):
 	entity_manager.update_coords_entity_cache()
@@ -100,11 +106,13 @@ func character_movement(dir:Vector2i):
 	undo_service.warp(func():
 		for character in characters:
 			move_service.try_move(character, dir)
+		update_services()
 	)
 
 func apply_action():
 	entity_manager.update_coords_entity_cache()
 	undo_service.warp(func():
 		action_service.update()
+		update_services()
 	)
 		

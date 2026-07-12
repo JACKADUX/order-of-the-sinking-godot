@@ -22,7 +22,7 @@ script = ExtResource("1_3v0eb")
 [node name="ComponentManager" type="Node2D" parent="." unique_id=1287691980]
 script = ExtResource("2_qbcim")
 
-[node name="Coords" type="Node" parent="ComponentManager" unique_id=645662832]
+[node name="Transform" type="Node" parent="ComponentManager" unique_id=645662832]
 script = ExtResource("3_qvj7r")
 metadata/_custom_type_script = "uid://gc6aow4ry1an"
 

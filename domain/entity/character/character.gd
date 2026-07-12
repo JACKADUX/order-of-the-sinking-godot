@@ -27,5 +27,5 @@ func update_with(component:Component, _key:=""):
 	super(component, _key)
 	if component is Creature:
 		var crystalize = component.is_crystalized()
-		sprite_2d.texture.y = 4 if crystalize else 7
+		#sprite_2d.texture.y = 4 if crystalize else 7
 	

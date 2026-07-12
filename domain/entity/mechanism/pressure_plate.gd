@@ -8,8 +8,9 @@ func update_with(component:Component, key:=""):
 		sprite_2d.texture.x = 1 if component.is_activated() else 0
 
 
-func check(entity_manager:EntityManager):
+func check_mechanism(service:MechanismService):
 	var activate :Activate= get_component(Activate)
-	var value = entity_manager.get_entity_at(get_coords()) != null
-	activate.set_activate(value)
+	activate.set_activate(service.entity_above(get_coords()))
+	
+
 	

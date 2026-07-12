@@ -1,3 +1,4 @@
+@abstract
 class_name Application extends Node
 
 signal event_rasied(event:BaseEvent)

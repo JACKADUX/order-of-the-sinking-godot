@@ -1,21 +1,16 @@
 class_name BuffService extends Service
 
-var tilemap_manager:TileMapManager
-var entity_manager:EntityManager
-
-func _init(app:Application) -> void:
-	entity_manager = app.get_manager(EntityManager)
-	tilemap_manager = app.get_manager(TileMapManager)
-
 func update():
 	var characters := entity_manager.get_characters()
 	for character :Character in characters:
 		if is_immunity(character):
 			continue
 		var coords := character.get_coords()
-		var nei_characters = entity_manager.get_neighbor_character(coords)
+		var nei_entites = entity_manager.get_neighbor_entities(coords)
 		var any_immunity := false
-		for c in nei_characters:
+		for c in nei_entites:
+			if c is not Character:
+				continue
 			if is_immunity(c):
 				any_immunity = true
 				break

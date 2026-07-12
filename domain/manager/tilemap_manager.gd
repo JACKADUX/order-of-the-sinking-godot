@@ -17,3 +17,7 @@ func is_wall(coords: Vector2i) -> bool:
 	
 func is_water(coords: Vector2i) -> bool:
 	return get_type_data(ground_tilemap, coords) == WATER
+
+
+func set_water_to_ground(coords: Vector2i):
+	ground_tilemap.set_cell(coords, 0, Vector2i(1,0))

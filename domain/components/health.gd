@@ -5,6 +5,7 @@ const K_INVINCIBLE := "invincible"
 
 @export var health_value :int= 1
 @export var invincible := false
+@export var attackable := false 
 
 func take_damage(damage:int):
 	if invincible or is_dead():
@@ -26,8 +27,12 @@ func is_invincible() -> bool:
 func get_health() -> int:
 	return health_value
 
+func is_attackable() -> bool:
+	return attackable and health_value > 0
+
 func get_data() -> Dictionary:
 	return {
-		"health_value": health_value,
+		"health_value": get_health(),
 		"invincible": is_invincible(),
+		"attackable": is_attackable(),
 	}
