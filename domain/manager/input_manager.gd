@@ -12,6 +12,9 @@ var actions := {
 	Const.IM_RESET: KEY_R,
 }
 
+@export var ban_reset := false 
+@export var input_delay :float = 0.2
+ 
 func _ready() -> void:
 	for action in actions:
 		InputMapUtils.action_add_event_key(action, actions[action])
@@ -22,6 +25,9 @@ func raise_user_input_event(action:String, data:={}) :
 func _unhandled_input(event: InputEvent) -> void:
 	if event is not InputEventKey:
 		return 
+	if ban_reset and event.is_action_pressed(Const.IM_RESET):
+		print("禁用reset可以单独发送事件告知玩家")
+		return 
 	if move_event(event):
 		return
 	if switch_character(event):
@@ -30,18 +36,37 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed(action):
 			raise_user_input_event(action)
 
+var _timer := SimpleTimer.new()
 func move_event(event:InputEvent) -> bool:
 	var dir := Vector2i.ZERO
+	var _clear := false
 	if event.is_action_pressed(Const.IM_LEFT):
 		dir = Vector2.LEFT
+		_clear = true
 	if event.is_action_pressed(Const.IM_RIGHT):
 		dir = Vector2.RIGHT
+		_clear = true
 	if event.is_action_pressed(Const.IM_UP):
 		dir = Vector2.UP
+		_clear = true
 	if event.is_action_pressed(Const.IM_DOWN):
 		dir = Vector2.DOWN
+		_clear = true
+		
+	if event.is_action(Const.IM_LEFT):
+		dir = Vector2.LEFT
+	if event.is_action(Const.IM_RIGHT):
+		dir = Vector2.RIGHT
+	if event.is_action(Const.IM_UP):
+		dir = Vector2.UP
+	if event.is_action(Const.IM_DOWN):
+		dir = Vector2.DOWN
+		
 	if dir != Vector2i.ZERO:
-		raise_user_input_event(Const.IM_MOVE, {"dir": dir})
+		if _clear:
+			_timer.clear()
+		if _timer.check_timeout(input_delay):
+			raise_user_input_event(Const.IM_MOVE, {"dir": dir})
 		return true
 	return false
 
@@ -54,11 +79,6 @@ func switch_character(event:InputEvent) -> bool:
 		raise_user_input_event(Const.IM_SWITCH_CHARACTER, {"index":index})
 		return true
 	return false
-#if event.is_action_pressed(Const.IM_ENTER_LEVEL):
-	#var level_marker = Const.get_level_marker_at(Const.get_coords(player.global_position))
-	#if level_marker and level_marker.activate:
-		#get_tree().change_scene_to_packed.call_deferred(level_marker.level)
-		#return 
 
 
 

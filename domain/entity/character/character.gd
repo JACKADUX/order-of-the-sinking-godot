@@ -12,6 +12,7 @@ func _exit_tree() -> void:
 	super()
 	
 func _ready() -> void:
+	super()
 	var d = 1/8.0
 	var color = Color(1.0, 1.0, 1.0, 1.0)
 	match get_component(Ability).get_type():
@@ -23,8 +24,10 @@ func _ready() -> void:
 		6: color = Color(0.176, 0.867, 0.867, 1.0)
 	sprite_2d.modulate = color
 	
-func update_with(component:Component, _key:=""):
-	super(component, _key)
+func update_with(component:Component, _key:="", tween:Tween=null):
+	super(component, _key, tween)
+	if component is Transform:
+		sprite_2d.flip_h = component.get_direction().x < 0
 	if component is Creature:
 		var crystalize = component.is_crystalized()
 		#sprite_2d.texture.y = 4 if crystalize else 7

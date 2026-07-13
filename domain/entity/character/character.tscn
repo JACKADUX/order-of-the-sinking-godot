@@ -47,6 +47,6 @@ script = ExtResource("8_p5ivt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=640780680]
 unique_name_in_owner = true
-position = Vector2(0, -16)
+position = Vector2(0, -24)
 texture = SubResource("AtlasTexture_8jkxv")
 centered = false

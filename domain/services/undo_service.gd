@@ -34,17 +34,26 @@ func get_history_count() -> int:
 	return undo_datas.size()
 
 func undo():
+	notify_before_undo()
 	if undo_datas.size() == 1: 
 		apply_datas(undo_datas[0]) # NOTE : 总是保留初始状态
 	else:
 		apply_datas(undo_datas.pop_back())
-	notify_changed()
+	notify_changed(true)
 
 func reset():
 	if undo_datas.size() != 1:
+		notify_before_undo()
 		add_undo(collect_datas())
 		apply_datas(undo_datas[0])
-	notify_changed()
+	notify_changed(true)
 	
-func notify_changed():
-	raise_event(Events.DataChangedEvent.new())
+func notify_changed(immediate := false):
+	var event = Events.DataChangedEvent.new()
+	if immediate:
+		event.add_kwarg(event.K_IMMEDIATE,immediate)
+	raise_event(event)
+	
+func notify_before_undo():
+	raise_event(Events.BeforeUndoEvent.new())
+	

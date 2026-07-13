@@ -11,8 +11,8 @@ func _exit_tree() -> void:
 	remove_from_group(Const.GROUP_ENEMY)
 	super()
 
-func update_with(component:Component, _key:=""):
-	super(component, _key)
+func update_with(component:Component, _key:="", tween:Tween=null):
+	super(component, _key, tween)
 	if component is Creature:
 		var crystalize = component.is_crystalized()
 		#sprite_2d.texture.y = 4 if crystalize else 6

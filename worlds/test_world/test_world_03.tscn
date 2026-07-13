@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bwgn6ygl6p1bh" path="res://domain/manager/input_manager.gd" id="1_84pay"]
 [ext_resource type="Script" uid="uid://bhjntgnbgficw" path="res://domain/manager/tilemap_manager.gd" id="2_nvprx"]
 [ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="3_h5djg"]
-[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://worlds/wall/wall_tile_map_layer.tscn" id="4_ximty"]
+[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://component/wall/wall_tile_map_layer.tscn" id="4_ximty"]
 [ext_resource type="Script" uid="uid://03whukfkr1y4" path="res://domain/manager/entity_manager.gd" id="5_wr1by"]
 [ext_resource type="PackedScene" uid="uid://bumfm7xfd5hwq" path="res://domain/entity/mechanism/door.tscn" id="6_hcbbk"]
 [ext_resource type="PackedScene" uid="uid://caklk028v5vpf" path="res://domain/entity/items/rock.tscn" id="10_8csnh"]

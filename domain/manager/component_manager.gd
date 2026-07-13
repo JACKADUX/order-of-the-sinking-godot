@@ -1,7 +1,7 @@
 @tool
 class_name ComponentManager extends Manager
 
-signal component_value_changed(component:Component, key:String)
+signal component_value_changed(component:Component, key:String, value:Variant, prev:Variant)
 
 var _components : Dictionary[String,Component]
 
@@ -20,9 +20,8 @@ func add_component(component:Component):
 	if component.get_parent() == null:
 		add_child(component)
 	_components[component.get_script().get_global_name()] = component
-	component.value_changed.connect(func(key):
-		handle_value_changed(component, key)
-		component_value_changed.emit(component, key)
+	component.value_changed.connect(func(key:String, value:Variant, prev:Variant):
+		component_value_changed.emit(component, key, value, prev)
 	)
 
 
@@ -50,11 +49,6 @@ func set_data(data:Dictionary):
 		if not _components.has(component_name):
 			continue
 		_components[component_name].set_data(data[component_name])
-
-## 
-func handle_value_changed(component:Component, key:String):
-	owner.update_with(component, key)
-
 
 
 ## HELPERS ----

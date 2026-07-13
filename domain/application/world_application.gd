@@ -13,6 +13,7 @@ var zdepth_service : ZDepthService
 var input_manager : InputManager
 var tilemap_manager : TileMapManager
 var entity_manager : EntityManager
+var level_manager : LevelManager
 
 func debug_info():
 	DebugLabel.set_value("Character", active_character_index)
@@ -39,6 +40,11 @@ func init_managers():
 			tilemap_manager = register_manager(manager)
 		elif manager is EntityManager:
 			entity_manager = register_manager(manager)
+		elif manager is LevelManager:
+			level_manager = register_manager(manager)
+			
+	for manager :Manager in managers.values():
+		manager.init_manager()
 			
 func init_services():
 	undo_service = register_service(UndoService.new(self))
@@ -52,15 +58,16 @@ func init_services():
 func init_system():
 	undo_service.clear()
 	entity_manager.propagate_event_to_entity(Events.InitEvent.new())
-	switch_character(active_character_index)
+	entity_manager.update_coords_entity_cache()
+	switch_character(entity_manager.get_valid_character_index(active_character_index))
 	undo_service.reset()
 	handle_event(Events.DataChangedEvent.new())
 
 func handle_event(event:BaseEvent):
 	if event is Events.UserInputEvent:
 		handle_user_input_event(event.action, event.data)
-	if event is Events.DataChangedEvent:
-		entity_manager.propagate_event_to_entity(Events.DataChangedEvent.new())
+		return 
+	entity_manager.propagate_event_to_entity(event)
 
 func update_services():
 	entity_manager.update_coords_entity_cache()
@@ -83,7 +90,8 @@ func handle_user_input_event(action:String, data:={}):
 			character_movement(data.get("dir", Vector2i.ZERO))
 		Const.IM_ACTION:
 			apply_action()
-			
+		Const.IM_ENTER_LEVEL:
+			enter_level()
 
 func switch_character(character_index:int):
 	entity_manager.update_coords_entity_cache()
@@ -96,6 +104,7 @@ func switch_character(character_index:int):
 	entity_manager.character_activate(active_character_index)
 		
 func character_movement(dir:Vector2i):
+	_before_data_changed()
 	entity_manager.update_coords_entity_cache()
 	if dir == Vector2i.ZERO:
 		return 
@@ -110,9 +119,27 @@ func character_movement(dir:Vector2i):
 	)
 
 func apply_action():
+	_before_data_changed()
 	entity_manager.update_coords_entity_cache()
 	undo_service.warp(func():
 		action_service.update()
 		update_services()
 	)
 		
+func _before_data_changed():
+	# NOTE : 给视觉层发送通知, 这是为了
+	entity_manager.propagate_event_to_entity(Events.BeforeDataChangedEvent.new())
+
+func enter_level():
+	if not level_manager:
+		return 
+	var characters = entity_manager.get_active_characters()
+	if characters.size() != 1:
+		print("error: 不应该出现多个角色进入关卡的这种情况")
+		return 
+	var character = characters[0]
+	var level_mark := level_manager.get_level_mark_at(character.get_coords())
+	if not level_mark:
+		return 
+	get_tree().change_scene_to_packed(level_mark.level_scene)
+	

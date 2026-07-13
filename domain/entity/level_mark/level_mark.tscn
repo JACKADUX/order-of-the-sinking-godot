@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://brimxekifrupd"]
+
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="2_i4vur"]
+[ext_resource type="Script" uid="uid://b1556vpw2egv1" path="res://domain/entity/level_mark/level_mark.gd" id="2_musqj"]
+[ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="3_musqj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvhbo"]
+atlas = ExtResource("2_i4vur")
+region = Rect2(0, 96, 32, 32)
+script = ExtResource("3_musqj")
+y = 3
+metadata/_custom_type_script = "uid://08jwjcj2tn1a"
+
+[node name="LevelMark" type="Node2D" unique_id=1947059319]
+script = ExtResource("2_musqj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=559250996]
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_wvhbo")
+centered = false

@@ -32,5 +32,6 @@ metadata/_custom_type_script = "uid://igmj3iy5y6vo"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=917920921]
 unique_name_in_owner = true
+z_index = -1
 texture = SubResource("AtlasTexture_xdhd7")
 centered = false

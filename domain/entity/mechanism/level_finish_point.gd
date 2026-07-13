@@ -1,4 +1,4 @@
-class_name PressurePlate extends MechanismTrigger
+class_name LevelFinishPoint extends MechanismTrigger
 
 @onready var sprite_2d: Sprite2D = %Sprite2D
 

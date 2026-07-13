@@ -5,10 +5,6 @@ class InitEvent extends BaseEvent:
 	static func get_event_name() -> String:
 		return "InitEvent"
 
-class DataChangedEvent extends BaseEvent:
-	static func get_event_name() -> String:
-		return "DataChangedEvent"
-
 class EnemyDeadEvent extends BaseEvent:
 	static func get_event_name() -> String:
 		return "EnemyDeadEvent"
@@ -22,3 +18,16 @@ class UserInputEvent extends BaseEvent:
 		return "UserInputEvent"
 	var action:String
 	var data:Dictionary
+
+class BeforeUndoEvent extends BaseEvent:
+	static func get_event_name() -> String:
+		return "BeforeUndoEvent"
+
+class BeforeDataChangedEvent extends BaseEvent:
+	static func get_event_name() -> String:
+		return "BeforeDataChangedEvent"
+
+class DataChangedEvent extends BaseEvent:
+	const K_IMMEDIATE := "immediate"
+	static func get_event_name() -> String:
+		return "DataChangedEvent"

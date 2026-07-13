@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bwgn6ygl6p1bh" path="res://domain/manager/input_manager.gd" id="1_u1tmu"]
 [ext_resource type="Script" uid="uid://bhjntgnbgficw" path="res://domain/manager/tilemap_manager.gd" id="2_3efhs"]
 [ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="3_0uivh"]
-[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://worlds/wall/wall_tile_map_layer.tscn" id="4_wcq6i"]
+[ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://component/wall/wall_tile_map_layer.tscn" id="4_wcq6i"]
 [ext_resource type="Script" uid="uid://03whukfkr1y4" path="res://domain/manager/entity_manager.gd" id="5_vd7f8"]
 [ext_resource type="PackedScene" uid="uid://bumfm7xfd5hwq" path="res://domain/entity/mechanism/door.tscn" id="6_3sngp"]
 [ext_resource type="PackedScene" uid="uid://ceyxearq1tjj5" path="res://domain/entity/mechanism/pressure_plate.tscn" id="7_ksjor"]

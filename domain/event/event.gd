@@ -35,3 +35,7 @@ func has_kwarg(key: String):
 func get_kwarg(key: String):
 	# 保证调用时这个值一定存在，否则会报错
 	return _kwargs[key]
+
+func get_kwarg_with_default(key: String, default:Variant=null):
+	# 保证调用时这个值一定存在，否则会报错
+	return _kwargs.get(key, default)

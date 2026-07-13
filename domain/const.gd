@@ -24,14 +24,7 @@ const GROUP_ENEMY := "GROUP_ENEMY"
 const GROUP_MECHANISM_TRIGGER := "GROUP_MECHANISM_TRIGGER"  # 触发器
 const GROUP_MECHANISM_ACTUATOR := "GROUP_MECHANISM_ACTUATOR" # 执行器
 
-const GROUP_LEVEL_MARKER := "GROUP_LEVEL_MARKER"
+const GROUP_LEVEL_MARK := "GROUP_LEVEL_MARK"
 
-#static func get_level_markers() -> Array:
-	#return Engine.get_main_loop().get_nodes_in_group(GROUP_LEVEL_MARKER)
-#
-#static func get_level_marker_at(coords:Vector2i) -> LevelMarker:
-	#for marker in get_level_markers():
-		#if get_coords(marker.global_position) == coords:
-			#return marker
-	#return null
+
 		

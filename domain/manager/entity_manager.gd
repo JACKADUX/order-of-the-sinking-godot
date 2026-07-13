@@ -109,7 +109,7 @@ func get_neighbor_entities(coords:Vector2i) -> Array:
 	return characters
 
 func get_entities_at_matrix(coords:Vector2i, offset:=Vector2i(2,2)) -> Array:
-	var coords_data := query_coords_entity_data(K_CACHE_MOVABLE)
+	var coords_data := query_coords_entity_data(K_CACHE_MOVABLE,K_CACHE_UNDER_WATER)
 	var rect = Rect2i(coords-offset, offset*2+Vector2i.ONE)
 	var entities := []
 	for other_coords in coords_data:
@@ -157,7 +157,8 @@ func get_active_characters() -> Array:
 	return get_characters().filter(
 		func(c): return c.get_component(Activate).is_activated()
 	)
-	
+
+
 func character_activate(index:int):
 	for character :Character in get_characters():
 		var active = character.get_component(Ability).type == index
@@ -172,6 +173,11 @@ func get_valid_character_indexs() -> Array:
 	indexs.sort() 
 	return indexs
 
+func get_valid_character_index(index:int) -> int:
+	var indexs = get_valid_character_indexs()
+	if index in indexs:
+		return index
+	return indexs.pop_front()
 
 ## Helper
 @export_tool_button("Add Entity") var __add__ :Callable = __add_entity__

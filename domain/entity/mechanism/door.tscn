@@ -23,7 +23,7 @@ script = ExtResource("1_bypxx")
 script = ExtResource("2_onyfp")
 metadata/_custom_type_script = "uid://caxe2fuoiysb2"
 
-[node name="Coords" type="Node" parent="ComponentManager" unique_id=1416202094]
+[node name="Transform" type="Node" parent="ComponentManager" unique_id=1416202094]
 script = ExtResource("3_rg48y")
 metadata/_custom_type_script = "uid://gc6aow4ry1an"
 

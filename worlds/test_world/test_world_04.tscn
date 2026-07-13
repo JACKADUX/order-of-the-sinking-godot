@@ -8,11 +8,14 @@
 [ext_resource type="Script" uid="uid://c4rbl6p1mvj8u" path="res://component/debug_label/entity_debugger.gd" id="8_kuyfy"]
 [ext_resource type="PackedScene" uid="uid://ceyxearq1tjj5" path="res://domain/entity/mechanism/pressure_plate.tscn" id="8_xdtxt"]
 [ext_resource type="PackedScene" uid="uid://ge42d0tdcqqo" path="res://domain/entity/enemy/coyote.tscn" id="8_yh2kg"]
+[ext_resource type="PackedScene" uid="uid://pi3xqskrefv1" path="res://domain/entity/character/character_3.tscn" id="9_yh2kg"]
+[ext_resource type="PackedScene" uid="uid://beqay7j2ui0sb" path="res://domain/entity/character/character_2.tscn" id="11_kq8uq"]
+[ext_resource type="PackedScene" uid="uid://bkdq0j4g81wax" path="res://domain/entity/character/character_5.tscn" id="12_mobxe"]
 
 [node name="TestWorld004" unique_id=1191664350 instance=ExtResource("1_nkpiv")]
 
 [node name="Application" parent="." index="0" unique_id=1666339984]
-active_character_index = 1
+active_character_index = 5
 
 [node name="GroundTileMapLayer" parent="TileMapManager" parent_id_path=PackedInt32Array(432579976) index="0" unique_id=1065113669]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAAAAAUAAAABAAAAAAAAAAYAAAABAAAAAAAAAAcAAAABAAAAAAAAAAgAAAABAAAAAAAAAAkAAAABAAAAAAABAAAAAAABAAAAAAABAAEAAAABAAAAAAABAAIAAAABAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAABAAUAAAABAAAAAAABAAYAAAABAAAAAAABAAcAAAABAAAAAAABAAgAAAABAAAAAAABAAkAAAABAAAAAAACAAAAAAABAAAAAAACAAEAAAABAAAAAAACAAIAAAABAAAAAAACAAMAAAABAAAAAAACAAQAAAABAAAAAAACAAUAAAABAAAAAAACAAYAAAABAAAAAAACAAcAAAABAAAAAAACAAgAAAABAAAAAAACAAkAAAABAAAAAAADAAAAAAABAAAAAAADAAEAAAABAAAAAAADAAIAAAABAAAAAAADAAMAAAABAAAAAAADAAQAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAADAAgAAAABAAAAAAADAAkAAAABAAAAAAAEAAAAAAABAAAAAAAEAAEAAAABAAAAAAAEAAIAAAABAAAAAAAEAAMAAAABAAAAAAAEAAQAAAABAAAAAAAEAAUAAAABAAAAAAAEAAYAAAABAAAAAAAEAAcAAAABAAAAAAAEAAgAAAABAAAAAAAEAAkAAAABAAAAAAAFAAAAAAABAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAABAAAAAAAFAAQAAAABAAAAAAAFAAUAAAABAAAAAAAFAAYAAAABAAAAAAAFAAcAAAABAAAAAAAFAAgAAAABAAAAAAAFAAkAAAABAAAAAAAGAAAAAAABAAAAAAAGAAEAAAACAAAAAAAGAAIAAAACAAAAAAAGAAMAAAABAAAAAAAGAAQAAAABAAAAAAAGAAUAAAABAAAAAAAGAAYAAAACAAAAAAAGAAcAAAACAAAAAAAGAAgAAAACAAAAAAAGAAkAAAABAAAAAAAHAAAAAAABAAAAAAAHAAEAAAABAAAAAAAHAAIAAAABAAAAAAAHAAMAAAABAAAAAAAHAAQAAAABAAAAAAAHAAUAAAABAAAAAAAHAAYAAAACAAAAAAAHAAcAAAACAAAAAAAHAAgAAAACAAAAAAAHAAkAAAABAAAAAAAIAAAAAAABAAAAAAAIAAEAAAABAAAAAAAIAAIAAAABAAAAAAAIAAMAAAABAAAAAAAIAAQAAAABAAAAAAAIAAUAAAABAAAAAAAIAAYAAAABAAAAAAAIAAcAAAABAAAAAAAIAAgAAAABAAAAAAAIAAkAAAABAAAAAAAJAAAAAAABAAAAAAAJAAEAAAABAAAAAAAJAAIAAAABAAAAAAAJAAMAAAABAAAAAAAJAAQAAAABAAAAAAAJAAUAAAABAAAAAAAJAAYAAAABAAAAAAAJAAcAAAABAAAAAAAJAAgAAAABAAAAAAAJAAkAAAABAAAAAAA=")
@@ -27,14 +30,10 @@ position = Vector2(160, 128)
 position = Vector2(-64, 0)
 
 [node name="Rock" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="1" unique_id=632925535 instance=ExtResource("4_kq8uq")]
-position = Vector2(96, 64)
+position = Vector2(64, 128)
 
 [node name="Rock2" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="2" unique_id=1895493209 instance=ExtResource("4_kq8uq")]
 position = Vector2(128, 64)
-
-[node name="EntityDebugger" type="Node" parent="EntityManager/Rock2" index="3" unique_id=534617492]
-script = ExtResource("8_kuyfy")
-metadata/_custom_type_script = "uid://c4rbl6p1mvj8u"
 
 [node name="Rock3" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="3" unique_id=2141948017 instance=ExtResource("4_kq8uq")]
 position = Vector2(64, 64)
@@ -51,3 +50,16 @@ direction = 3
 
 [node name="Character1" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="7" unique_id=1901295413 instance=ExtResource("2_lr4lm")]
 position = Vector2(32, 64)
+
+[node name="EntityDebugger" type="Node" parent="EntityManager/Character1" index="2" unique_id=1665875845]
+script = ExtResource("8_kuyfy")
+metadata/_custom_type_script = "uid://c4rbl6p1mvj8u"
+
+[node name="Character3" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="8" unique_id=1285623764 instance=ExtResource("9_yh2kg")]
+position = Vector2(160, 96)
+
+[node name="Character2" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="9" unique_id=538006852 instance=ExtResource("11_kq8uq")]
+position = Vector2(192, 96)
+
+[node name="Character5" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="10" unique_id=159820790 instance=ExtResource("12_mobxe")]
+position = Vector2(96, 96)

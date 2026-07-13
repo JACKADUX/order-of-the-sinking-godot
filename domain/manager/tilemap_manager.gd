@@ -14,7 +14,7 @@ func get_type_data(tilemaplayer:TileMapLayer, coords: Vector2i)->int:
 
 func is_wall(coords: Vector2i) -> bool:
 	return get_type_data(wall_tilemap, coords) == WALL
-	
+
 func is_water(coords: Vector2i) -> bool:
 	return get_type_data(ground_tilemap, coords) == WATER
 

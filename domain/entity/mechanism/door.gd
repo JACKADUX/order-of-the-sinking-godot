@@ -8,11 +8,11 @@ func _ready() -> void:
 		if child is MechanismTrigger and child not in triggers:
 			triggers.append(child)
 	
-func update_with(component:Component, key:=""):
-	super(component, key)
+func update_with(component:Component, key:="", tween:Tween=null):
+	super(component, key, tween)
 	if component is Activate:
 		sprite_2d.texture.x = 1 if component.is_activated() else 0
-			
+	
 	
 func check_mechanism(_service:MechanismService):
 	if triggers.is_empty(): 

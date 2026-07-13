@@ -2,13 +2,18 @@ class_name MoveService extends Service
 
 
 func can_move_to_this_coords(entity:Entity, coords:Vector2i) -> bool:
-	if tilemap_manager.is_wall(coords) or entity_manager.get_wall_entity_at(coords):
-		return false
-	var under_water_entity = entity_manager.get_under_water_entity(coords)
-	if tilemap_manager.is_water(coords) and under_water_entity and entity_manager.is_supportable(under_water_entity):
-		return true
-	if entity is Character:
-		return not tilemap_manager.is_water(coords)
+	match entity.get_zdepth():
+		0:
+			if tilemap_manager.is_wall(coords) or entity_manager.get_wall_entity_at(coords):
+				return false
+			var under_water_entity = entity_manager.get_under_water_entity(coords)
+			if tilemap_manager.is_water(coords) and under_water_entity and entity_manager.is_supportable(under_water_entity):
+				return true
+			if entity is Character:
+				return not tilemap_manager.is_water(coords)
+		-1: 
+			if not tilemap_manager.is_water(coords) or entity_manager.get_under_water_entity(coords):
+				return false
 	return true
 
 func try_move(entity:Entity, dir:Vector2i) -> bool:
@@ -87,12 +92,11 @@ func teleport(entity:Entity, dir:Vector2i):
 	var other_entity := entity_manager.get_nearest_entitiy_at_direction(coords, dir)
 	if other_entity:
 		var obstacle :Obstacle = other_entity.get_component(Obstacle)
-		if obstacle and obstacle.is_wall():
-			return			
-		entity.set_coords(other_entity.get_coords())
-		other_entity.set_coords(coords)
-	else:
-		entity.move_to(target_coords)
+		if not obstacle.is_wall():
+			entity.set_coords(other_entity.get_coords())
+			other_entity.set_coords(coords)
+			return 
+	entity.move_to(target_coords)
 	entity.set_direction(dir)
 
 func follow(entity:Entity, dir:Vector2i, offset:=Vector2i(2,2)):
