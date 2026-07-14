@@ -1,0 +1,136 @@
+[gd_scene format=4 uid="uid://bbu8t6628f80d"]
+
+[ext_resource type="PackedScene" uid="uid://ddrlmt2acvxok" path="res://worlds/base_world.tscn" id="1_nrnc6"]
+[ext_resource type="PackedScene" uid="uid://gmc4khhpncru" path="res://domain/entity/mechanism/level_finish_point.tscn" id="2_mtq0i"]
+[ext_resource type="PackedScene" uid="uid://vkrlpfvcrnl2" path="res://domain/entity/character/character_6.tscn" id="3_38vt7"]
+[ext_resource type="PackedScene" uid="uid://beqay7j2ui0sb" path="res://domain/entity/character/character_2.tscn" id="5_415ss"]
+[ext_resource type="PackedScene" uid="uid://dd6swmid5y8ha" path="res://domain/entity/items/grass.tscn" id="6_nrnc6"]
+[ext_resource type="PackedScene" uid="uid://bumfm7xfd5hwq" path="res://domain/entity/mechanism/door.tscn" id="7_i3mrs"]
+[ext_resource type="PackedScene" uid="uid://ceyxearq1tjj5" path="res://domain/entity/mechanism/pressure_plate.tscn" id="9_twiwc"]
+
+[node name="WorldLevel004" unique_id=1191664350 instance=ExtResource("1_nrnc6")]
+
+[node name="GroundTileMapLayer" parent="TileMapManager" parent_id_path=PackedInt32Array(432579976) index="0" unique_id=1065113669]
+tile_map_data = PackedByteArray("AAAAAAAAAwABAAAAAAAAAAEAAwABAAAAAAAAAAIAAwABAAAAAAAAAAMAAwABAAAAAAAAAAQAAwABAAAAAAAAAAUAAwABAAAAAAAAAAYAAwABAAAAAAAAAAcAAwABAAAAAAAAAAgAAwABAAAAAAAAAAkAAwABAAAAAAABAAAAAwABAAAAAAABAAEAAwABAAAAAAABAAIAAwABAAAAAAABAAMAAwABAAAAAAABAAQAAwABAAAAAAABAAUAAwABAAAAAAABAAYAAwABAAAAAAABAAcAAwABAAAAAAABAAgAAwABAAAAAAABAAkAAwABAAAAAAACAAAAAwABAAAAAAACAAEAAwABAAAAAAACAAIAAwABAAAAAAACAAMAAwABAAAAAAACAAQAAwABAAAAAAACAAUAAwABAAAAAAACAAYAAwABAAAAAAACAAcAAwABAAAAAAACAAgAAwABAAAAAAACAAkAAwABAAAAAAADAAAAAwABAAAAAAADAAEAAwABAAAAAAADAAIAAwABAAAAAAADAAMAAwABAAAAAAADAAQAAwABAAAAAAADAAUAAwABAAAAAAADAAYAAwABAAAAAAADAAcAAwABAAAAAAADAAgAAwABAAAAAAADAAkAAwABAAAAAAAEAAAAAwABAAAAAAAEAAEAAwABAAAAAAAEAAIAAwABAAAAAAAEAAMAAwABAAAAAAAEAAQAAwABAAAAAAAEAAUAAwABAAAAAAAEAAYAAwABAAAAAAAEAAcAAwABAAAAAAAEAAgAAwABAAAAAAAEAAkAAwABAAAAAAAFAAAAAwABAAAAAAAFAAEAAwABAAAAAAAFAAIAAwABAAAAAAAFAAMAAwABAAAAAAAFAAQAAwABAAAAAAAFAAUAAwABAAAAAAAFAAYAAwABAAAAAAAFAAcAAwABAAAAAAAFAAgAAwABAAAAAAAFAAkAAwABAAAAAAAGAAAAAwABAAAAAAAGAAEAAwABAAAAAAAGAAIAAwABAAAAAAAGAAMAAwABAAAAAAAGAAQAAwABAAAAAAAGAAUAAwABAAAAAAAGAAYAAwABAAAAAAAGAAcAAwABAAAAAAAGAAgAAwABAAAAAAAGAAkAAwABAAAAAAAHAAAAAwABAAAAAAAHAAEAAwABAAAAAAAHAAIAAwABAAAAAAAHAAMAAwABAAAAAAAHAAQAAwABAAAAAAAHAAUAAwABAAAAAAAHAAYAAwABAAAAAAAHAAcAAwABAAAAAAAHAAgAAwABAAAAAAAHAAkAAwABAAAAAAAIAAAAAwABAAAAAAAIAAEAAwABAAAAAAAIAAIAAwABAAAAAAAIAAMAAwABAAAAAAAIAAQAAwABAAAAAAAIAAUAAwABAAAAAAAIAAYAAwABAAAAAAAIAAcAAwABAAAAAAAIAAgAAwABAAAAAAAIAAkAAwABAAAAAAAJAAAAAwABAAAAAAAJAAEAAwABAAAAAAAJAAIAAwABAAAAAAAJAAMAAwABAAAAAAAJAAQAAwABAAAAAAAJAAUAAwABAAAAAAAJAAYAAwABAAAAAAAJAAcAAwABAAAAAAAJAAgAAwABAAAAAAAJAAkAAwABAAAAAAD/////AwABAAAAAAD//wAAAwABAAAAAAD//wEAAwABAAAAAAD//wIAAwABAAAAAAD//wMAAwABAAAAAAD//wQAAwABAAAAAAD//wUAAwABAAAAAAD//wYAAwABAAAAAAD//wcAAwABAAAAAAD//wgAAwABAAAAAAD//wkAAwABAAAAAAD//woAAwABAAAAAAAAAP//AwABAAAAAAAAAAoAAwABAAAAAAABAP//AwABAAAAAAABAAoAAwABAAAAAAACAP//AwABAAAAAAACAAoAAwABAAAAAAADAP//AwABAAAAAAADAAoAAwABAAAAAAAEAP//AwABAAAAAAAEAAoAAwABAAAAAAAFAP//AwABAAAAAAAFAAoAAwABAAAAAAAGAP//AwABAAAAAAAGAAoAAwABAAAAAAAHAP//AwABAAAAAAAHAAoAAwABAAAAAAAIAP//AwABAAAAAAAIAAoAAwABAAAAAAAJAP//AwABAAAAAAAJAAoAAwABAAAAAAAKAP//AwABAAAAAAAKAAAAAwABAAAAAAAKAAEAAwABAAAAAAAKAAIAAwABAAAAAAAKAAMAAwABAAAAAAAKAAQAAwABAAAAAAAKAAUAAwABAAAAAAAKAAYAAwABAAAAAAAKAAcAAwABAAAAAAAKAAgAAwABAAAAAAAKAAkAAwABAAAAAAAKAAoAAwABAAAAAAA=")
+
+[node name="WallTileMapLayer" parent="TileMapManager" parent_id_path=PackedInt32Array(432579976) index="1" unique_id=845189614]
+tile_map_data = PackedByteArray("AAAAAAEABQAAAAEAAAABAAEABQAAAAEAAAACAAEABQAAAAEAAAADAAEABQAAAAEAAAAEAAEABQAAAAEAAAAFAAEABQAAAAEAAAAGAAEABQAAAAEAAAAHAAEABQAAAAEAAAAIAAEABQAAAAEAAAAJAAEABQAAAAEAAAAKAAEABQAAAAEAAAAKAAIABQAAAAEAAAAKAAMABQAAAAEAAAAKAAQABQAAAAEAAAAKAAUABQAAAAEAAAD//wEABQAAAAEAAAD//wIABQAAAAEAAAD//wMABQAAAAEAAAD//wQABQAAAAEAAAD//wUABQAAAAEAAAAKAAYABQAAAAEAAAAKAAcABQAAAAEAAAD//wcABQAAAAEAAAAAAAcABQAAAAEAAAABAAcABQAAAAEAAAACAAcABQAAAAEAAAADAAcABQAAAAEAAAAEAAcABQAAAAEAAAAFAAcABQAAAAEAAAAGAAcABQAAAAEAAAAHAAcABQAAAAEAAAAIAAcABQAAAAEAAAAJAAcABQAAAAEAAAD//wYABQAAAAEAAAA=")
+
+[node name="LevelFinishPoint" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="0" unique_id=1969265763 instance=ExtResource("2_mtq0i")]
+position = Vector2(160, 160)
+
+[node name="LevelFinishPoint2" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="1" unique_id=2067703838 instance=ExtResource("2_mtq0i")]
+position = Vector2(96, 160)
+
+[node name="Character6" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="2" unique_id=1901295413 instance=ExtResource("3_38vt7")]
+position = Vector2(256, 128)
+
+[node name="Character2" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="3" unique_id=427780106 instance=ExtResource("5_415ss")]
+position = Vector2(96, 96)
+
+[node name="Node2D" type="Node2D" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="4" unique_id=171215809]
+
+[node name="Grass" parent="EntityManager/Node2D" index="0" unique_id=859745245 instance=ExtResource("6_nrnc6")]
+position = Vector2(224, 160)
+
+[node name="Grass20" parent="EntityManager/Node2D" index="1" unique_id=536477972 instance=ExtResource("6_nrnc6")]
+position = Vector2(0, 128)
+
+[node name="Grass21" parent="EntityManager/Node2D" index="2" unique_id=1174491361 instance=ExtResource("6_nrnc6")]
+position = Vector2(0, 64)
+
+[node name="Grass33" parent="EntityManager/Node2D" index="3" unique_id=1177029580 instance=ExtResource("6_nrnc6")]
+position = Vector2(0, 64)
+
+[node name="Grass22" parent="EntityManager/Node2D" index="4" unique_id=1669365052 instance=ExtResource("6_nrnc6")]
+position = Vector2(32, 64)
+
+[node name="Grass2" parent="EntityManager/Node2D" index="5" unique_id=93454805 instance=ExtResource("6_nrnc6")]
+position = Vector2(224, 128)
+
+[node name="Grass3" parent="EntityManager/Node2D" index="6" unique_id=190203406 instance=ExtResource("6_nrnc6")]
+position = Vector2(192, 128)
+
+[node name="Grass4" parent="EntityManager/Node2D" index="7" unique_id=722479293 instance=ExtResource("6_nrnc6")]
+position = Vector2(160, 128)
+
+[node name="Grass5" parent="EntityManager/Node2D" index="8" unique_id=1167260982 instance=ExtResource("6_nrnc6")]
+position = Vector2(96, 128)
+
+[node name="Grass6" parent="EntityManager/Node2D" index="9" unique_id=1144768270 instance=ExtResource("6_nrnc6")]
+position = Vector2(128, 128)
+
+[node name="Grass7" parent="EntityManager/Node2D" index="10" unique_id=1325049791 instance=ExtResource("6_nrnc6")]
+position = Vector2(64, 128)
+
+[node name="Grass8" parent="EntityManager/Node2D" index="11" unique_id=812978622 instance=ExtResource("6_nrnc6")]
+position = Vector2(64, 64)
+
+[node name="Grass9" parent="EntityManager/Node2D" index="12" unique_id=1152364025 instance=ExtResource("6_nrnc6")]
+position = Vector2(96, 64)
+
+[node name="Grass10" parent="EntityManager/Node2D" index="13" unique_id=1590814227 instance=ExtResource("6_nrnc6")]
+position = Vector2(128, 64)
+
+[node name="Grass11" parent="EntityManager/Node2D" index="14" unique_id=535991580 instance=ExtResource("6_nrnc6")]
+position = Vector2(160, 64)
+
+[node name="Grass12" parent="EntityManager/Node2D" index="15" unique_id=475744040 instance=ExtResource("6_nrnc6")]
+position = Vector2(192, 64)
+
+[node name="Grass13" parent="EntityManager/Node2D" index="16" unique_id=689912611 instance=ExtResource("6_nrnc6")]
+position = Vector2(224, 64)
+
+[node name="Grass14" parent="EntityManager/Node2D" index="17" unique_id=125835921 instance=ExtResource("6_nrnc6")]
+position = Vector2(256, 64)
+
+[node name="Grass15" parent="EntityManager/Node2D" index="18" unique_id=1132352601 instance=ExtResource("6_nrnc6")]
+position = Vector2(288, 64)
+
+[node name="Grass23" parent="EntityManager/Node2D" index="19" unique_id=909963025 instance=ExtResource("6_nrnc6")]
+position = Vector2(0, 192)
+
+[node name="Grass24" parent="EntityManager/Node2D" index="20" unique_id=134171421 instance=ExtResource("6_nrnc6")]
+position = Vector2(32, 192)
+
+[node name="Grass25" parent="EntityManager/Node2D" index="21" unique_id=781741727 instance=ExtResource("6_nrnc6")]
+position = Vector2(64, 192)
+
+[node name="Grass26" parent="EntityManager/Node2D" index="22" unique_id=858771201 instance=ExtResource("6_nrnc6")]
+position = Vector2(96, 192)
+
+[node name="Grass27" parent="EntityManager/Node2D" index="23" unique_id=2114040073 instance=ExtResource("6_nrnc6")]
+position = Vector2(128, 192)
+
+[node name="Grass28" parent="EntityManager/Node2D" index="24" unique_id=1858108413 instance=ExtResource("6_nrnc6")]
+position = Vector2(160, 192)
+
+[node name="Grass29" parent="EntityManager/Node2D" index="25" unique_id=1496866003 instance=ExtResource("6_nrnc6")]
+position = Vector2(192, 192)
+
+[node name="Grass30" parent="EntityManager/Node2D" index="26" unique_id=1222565121 instance=ExtResource("6_nrnc6")]
+position = Vector2(224, 192)
+
+[node name="Grass31" parent="EntityManager/Node2D" index="27" unique_id=649554585 instance=ExtResource("6_nrnc6")]
+position = Vector2(256, 192)
+
+[node name="Grass32" parent="EntityManager/Node2D" index="28" unique_id=908210905 instance=ExtResource("6_nrnc6")]
+position = Vector2(288, 192)
+
+[node name="Grass16" parent="EntityManager/Node2D" index="29" unique_id=188625829 instance=ExtResource("6_nrnc6")]
+position = Vector2(288, 96)
+
+[node name="Grass17" parent="EntityManager/Node2D" index="30" unique_id=191385156 instance=ExtResource("6_nrnc6")]
+position = Vector2(288, 128)
+
+[node name="Grass18" parent="EntityManager/Node2D" index="31" unique_id=1969639009 instance=ExtResource("6_nrnc6")]
+position = Vector2(288, 160)
+
+[node name="Grass19" parent="EntityManager/Node2D" index="32" unique_id=1051047896 instance=ExtResource("6_nrnc6")]
+position = Vector2(192, 96)
+
+[node name="Door" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="5" unique_id=1682633432 instance=ExtResource("7_i3mrs")]
+position = Vector2(32, 128)
+
+[node name="PressurePlate" parent="EntityManager/Door" index="2" unique_id=1882655600 instance=ExtResource("9_twiwc")]
+position = Vector2(32, -32)

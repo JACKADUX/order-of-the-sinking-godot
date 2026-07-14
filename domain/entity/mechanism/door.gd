@@ -4,6 +4,7 @@ class_name Door extends MechanismActuator
 @export var triggers: Array[MechanismTrigger] = []
 
 func _ready() -> void:
+	super()
 	for child in get_children():
 		if child is MechanismTrigger and child not in triggers:
 			triggers.append(child)

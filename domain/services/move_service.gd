@@ -78,23 +78,25 @@ func pull(entity:Entity, dir:Vector2i):
 	var back_coords := current_coords-dir
 	var other_entity = entity_manager.get_entity_at(target_coords)
 	if other_entity : return 
+	entity.set_direction(dir)
 	entity.move_to(target_coords)
 	other_entity = entity_manager.get_movable_entity_at(back_coords)
 	if other_entity:
 		other_entity.move_to(current_coords)
-		entity.set_direction(dir)
+		
 
 func teleport(entity:Entity, dir:Vector2i):
 	var coords := entity.get_coords()
 	var target_coords := coords+dir
 	if not can_move_to_this_coords(entity, target_coords):
 		return false
-	var other_entity := entity_manager.get_nearest_entitiy_at_direction(coords, dir)
+	var other_entity := entity_manager.get_nearest_entitiy_at_direction(coords, dir, tilemap_manager)
 	if other_entity:
 		var obstacle :Obstacle = other_entity.get_component(Obstacle)
 		if not obstacle.is_wall():
-			entity.set_coords(other_entity.get_coords())
-			other_entity.set_coords(coords)
+			entity.teleport(other_entity.get_coords())
+			other_entity.teleport(coords)
+			entity.set_direction(dir)
 			return 
 	entity.move_to(target_coords)
 	entity.set_direction(dir)

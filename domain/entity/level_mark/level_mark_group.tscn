@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bfrb5kxcssbu2"]
+
+[ext_resource type="Script" uid="uid://gsjdf16q8iec" path="res://domain/entity/level_mark/level_mark_group.gd" id="1_mc4on"]
+
+[node name="LevelMarkGroup" type="Node2D" unique_id=59268406]
+script = ExtResource("1_mc4on")

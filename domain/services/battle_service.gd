@@ -18,5 +18,5 @@ func neighbor_attack(coords:Vector2i):
 		attack(entity)
 
 func line_attack(coords:Vector2i, dir:Vector2i):
-	var entity = entity_manager.get_nearest_entitiy_at_direction(coords, dir)
+	var entity = entity_manager.get_nearest_entitiy_at_direction(coords, dir, tilemap_manager)
 	attack(entity)

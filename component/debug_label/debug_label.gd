@@ -1,4 +1,6 @@
-extends RichTextLabel
+extends CanvasLayer
+
+@onready var rich_text_label: RichTextLabel = %RichTextLabel
 
 var data := {}
 
@@ -9,7 +11,8 @@ func set_value(key:String, value:Variant):
 	update()
 	
 func update():
-	text = ""
+	var text = ""
 	for key in data:
 		text += str(key) +" : "
 		text += str(data[key]) + "\n"
+	rich_text_label.text = text

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Order of the Sinking Star"
-run/main_scene="uid://3m288i4tk5oq"
+run/main_scene="uid://7xkq0uujccds"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "Forward Plus")
@@ -25,11 +25,11 @@ GameManager="*uid://cimqvhncdt53d"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=320
+window/size/viewport_width=384
+window/size/viewport_height=384
 window/size/always_on_top=true
-window/size/window_width_override=640
-window/size/window_height_override=640
+window/size/window_width_override=968
+window/size/window_height_override=968
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
@@ -43,7 +43,8 @@ folder_colors={
 "res://_test/": "red",
 "res://assets/": "yellow",
 "res://domain/": "purple",
-"res://domain/services/": "purple"
+"res://domain/services/": "purple",
+"res://worlds/": "blue"
 }
 
 [layer_names]

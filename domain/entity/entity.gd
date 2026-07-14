@@ -54,6 +54,7 @@ func get_coords() -> Vector2i:
 
 func set_coords(value:Vector2i):
 	var entity_transform :Transform= get_component(Transform)
+	if not entity_transform: return 
 	entity_transform.set_coords(value)
 
 func get_direction() -> Vector2i:
@@ -62,6 +63,7 @@ func get_direction() -> Vector2i:
 
 func set_direction(value:Vector2i):
 	var entity_transform :Transform= get_component(Transform)
+	if not entity_transform: return 
 	entity_transform.set_direction(value)
 
 func get_zdepth() -> int:
@@ -70,10 +72,15 @@ func get_zdepth() -> int:
 
 func set_zdepth(value:int):
 	var entity_transform :Transform= get_component(Transform)
+	if not entity_transform: return 
 	entity_transform.set_zdepth(value)
 
 func move_to(coords:Vector2i):
 	set_coords(coords)
+
+func teleport(coords:Vector2i):
+	set_coords(coords)
+	global_position = Vector2(coords*Const.TILE)
 
 func update_with(component:Component, _key:="", tween:Tween=null):
 	## WARNING : 覆写该方法时记得 super(...) 否则可能会造成实体无法移动的情况
@@ -87,8 +94,9 @@ func update_with(component:Component, _key:="", tween:Tween=null):
 			modulate.a = 1
 			
 func _draw() -> void:
-	var center = Vector2i.ONE*Const.HALF_TILE
-	draw_circle(center+get_direction()*Const.HALF_TILE, 2, Color.GREEN)
+	if self is Character or self is Enemy:
+		var center = Vector2i.ONE*Const.HALF_TILE
+		draw_circle(center+get_direction()*Const.HALF_TILE, 2, Color.GREEN)
 			
 func handle_event(event:BaseEvent):
 	if event is Events.InitEvent:

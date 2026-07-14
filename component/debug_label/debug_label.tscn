@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://d0n3ax45f2mur" path="res://component/debug_label/debug_label.gd" id="1_5phqw"]
 
-[node name="DebugLabel" type="RichTextLabel" unique_id=1980000301]
+[node name="DebugLabel" type="CanvasLayer" unique_id=68874997]
+layer = 10
+script = ExtResource("1_5phqw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1980000301]
+unique_name_in_owner = true
 z_index = 100
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -14,4 +19,3 @@ theme_override_font_sizes/normal_font_size = 8
 fit_content = true
 autowrap_mode = 0
 shortcut_keys_enabled = false
-script = ExtResource("1_5phqw")

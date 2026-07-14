@@ -34,4 +34,13 @@ func set_level_finished(scene_path:String, finished:bool):
 	if not level_mark:
 		return 
 	level_mark.set_finished(finished)
+	var level_group = level_mark.get_parent()
+	if level_group is not LevelMarkGroup:
+		return 
+	var index = level_mark.get_index()
+	var children = level_group.get_children()
+	if index >= children.size()-1:
+		return
+	var next = children[index+1]
+	next.set_activate(true)
 	

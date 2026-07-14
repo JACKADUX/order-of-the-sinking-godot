@@ -53,6 +53,8 @@ func save_game():
 	if not application:
 		return 
 	var scene_path = application.owner.scene_file_path
+	if scene_path != MAIN_WORLD and not application.is_level:
+		return 
 	game_data["world_datas"][scene_path] = application.get_data()
 	game_data["last_world"] = scene_path
 	JsonUtils.save_meta_native(data_path, game_data)
@@ -81,7 +83,10 @@ func continue_world(scene_path:String):
 
 func exit_level(scene_path:String, finished:bool):
 	await continue_world(MAIN_WORLD)
-	application.level_manager.set_level_finished(scene_path, finished)
+	if finished:
+		application.level_manager.set_level_finished(scene_path, finished)
+		application.mechanism_service.update()
+		application.handle_event(Events.DataChangedEvent.new())
 	
 
 func find_world_application(scene:Node) -> WorldApplication:

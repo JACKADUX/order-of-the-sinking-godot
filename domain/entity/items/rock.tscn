@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://caklk028v5vpf"]
 
 [ext_resource type="Script" uid="uid://cxl0664gmw27u" path="res://domain/entity/items/rock.gd" id="1_un52t"]
-[ext_resource type="Texture2D" uid="uid://2ppp2815qifv" path="res://assets/aesprit/Sprite-0001.png" id="2_0qeyt"]
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="2_0qeyt"]
 [ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://domain/manager/component_manager.gd" id="2_ocawn"]
 [ext_resource type="Script" uid="uid://gc6aow4ry1an" path="res://domain/components/coords.gd" id="3_7wj0m"]
 [ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="3_l04fi"]

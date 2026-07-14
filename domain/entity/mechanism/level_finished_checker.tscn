@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://6e8rfk3cbge1"]
+
+[ext_resource type="Script" uid="uid://cp20t5ks0m5kf" path="res://domain/entity/mechanism/level_finished_checker.gd" id="1_k1jj1"]
+[ext_resource type="Script" uid="uid://caxe2fuoiysb2" path="res://domain/manager/component_manager.gd" id="2_ysvtc"]
+[ext_resource type="Script" uid="uid://igmj3iy5y6vo" path="res://domain/components/activate.gd" id="3_si2i7"]
+
+[node name="LevelFinishedChecker" type="Node2D" unique_id=1115247001]
+script = ExtResource("1_k1jj1")
+metadata/_custom_type_script = "uid://c47un0ga4ptfg"
+
+[node name="ComponentManager" type="Node2D" parent="." unique_id=979875175]
+script = ExtResource("2_ysvtc")
+
+[node name="Activate" type="Node" parent="ComponentManager" unique_id=776779588]
+script = ExtResource("3_si2i7")

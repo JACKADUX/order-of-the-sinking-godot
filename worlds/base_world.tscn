@@ -6,12 +6,20 @@
 [ext_resource type="TileSet" uid="uid://oy2ke1oq58mw" path="res://assets/resource/main_tileset.tres" id="3_t31nu"]
 [ext_resource type="PackedScene" uid="uid://dn82eqfec0de8" path="res://component/wall/wall_tile_map_layer.tscn" id="4_l38ux"]
 [ext_resource type="Script" uid="uid://03whukfkr1y4" path="res://domain/manager/entity_manager.gd" id="5_1j2bq"]
+[ext_resource type="Script" uid="uid://dvoreoxb44vaq" path="res://domain/misc/grid_camera.gd" id="7_t31nu"]
 
 [node name="BaseWorld" type="Node2D" unique_id=1191664350]
 
 [node name="Application" type="Node" parent="." unique_id=1666339984]
 script = ExtResource("1_c7o8e")
 active_character_index = 0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1409730681]
+position = Vector2(-32, -32)
+anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("7_t31nu")
 
 [node name="InputManager" type="Node2D" parent="." unique_id=2060104703]
 script = ExtResource("1_1ja0i")

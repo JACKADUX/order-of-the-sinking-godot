@@ -21,6 +21,8 @@ var level_manager : LevelManager
 var is_level := false
 
 func debug_info():
+	DebugLabel.set_value("FPS", Engine.get_frames_per_second())
+	DebugLabel.set_value("EntityCount", entity_manager.get_all_entities().size())
 	DebugLabel.set_value("Character", active_character_index)
 	DebugLabel.set_value("history_count", undo_service.get_history_count())
 
@@ -96,6 +98,7 @@ func handle_event(event:BaseEvent):
 		return 
 	if event is Events.LevelFinishedEvent:
 		exit_level(owner.scene_file_path, true)
+		print("Level Finished")
 		return 
 	entity_manager.propagate_event_to_entity(event)
 
@@ -124,8 +127,6 @@ func handle_user_input_event(action:String, data:={}):
 			enter_level()
 		
 			
-			
-
 func switch_character(character_index:int):
 	entity_manager.update_coords_entity_cache()
 	var indexs = entity_manager.get_valid_character_indexs()
@@ -135,6 +136,7 @@ func switch_character(character_index:int):
 	elif character_index in indexs:
 		active_character_index = character_index
 	entity_manager.character_activate(active_character_index)
+	undo_service.notify_changed()
 		
 func character_movement(dir:Vector2i):
 	_before_data_changed()
@@ -172,7 +174,7 @@ func enter_level():
 		return 
 	var character = characters[0]
 	var level_mark := level_manager.get_level_mark_at(character.get_coords())
-	if not level_mark:
+	if not level_mark or not level_mark.is_activated():
 		return 
 	GameManager.enter_world(level_mark.level_scene, true)
 

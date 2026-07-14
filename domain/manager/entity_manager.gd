@@ -90,14 +90,17 @@ func get_character_at(coords:Vector2i) -> Character:
 func get_enemies() -> Array:
 	return query_coords_entity_data(K_CACHE_ENEMY).values()
 
-func get_nearest_entitiy_at_direction(coords:Vector2i, dir:Vector2i) -> Entity:
+func get_nearest_entitiy_at_direction(coords:Vector2i, dir:Vector2i, tilemap_manager:TileMapManager, max_length:int=100) -> Entity:
 	var coords_data := query_coords_entity_data(K_CACHE_ALL)
 	var sp := coords+dir
-	for i in coords_data.size():
+	for i in max_length:
+		if tilemap_manager.is_wall(sp):
+			return 
 		if coords_data.has(sp):
 			return coords_data[sp]
 		sp += dir
 	return null
+
 
 func get_neighbor_entities(coords:Vector2i) -> Array:
 	var data = query_coords_entity_data(K_CACHE_ALL)

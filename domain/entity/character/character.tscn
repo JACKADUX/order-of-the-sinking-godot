@@ -14,6 +14,10 @@
 atlas = ExtResource("9_4wfim")
 region = Rect2(0, 272, 32, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvhbo"]
+atlas = ExtResource("9_4wfim")
+region = Rect2(0, 128, 32, 32)
+
 [node name="Character" type="Node2D" unique_id=1901295413]
 script = ExtResource("1_b6my0")
 
@@ -50,3 +54,9 @@ unique_name_in_owner = true
 position = Vector2(0, -24)
 texture = SubResource("AtlasTexture_8jkxv")
 centered = false
+
+[node name="Crystal" type="Sprite2D" parent="." unique_id=1003681098]
+unique_name_in_owner = true
+visible = false
+position = Vector2(16, 5)
+texture = SubResource("AtlasTexture_wvhbo")

@@ -2,6 +2,8 @@ extends TileMapLayer
 
 var wall_layer :TileMapLayer
 
+var source_id := 7
+
 func _ready() -> void:
 	wall_layer = get_parent()
 	update()
@@ -27,18 +29,18 @@ func update():
 		if l_empty :
 			if get_cell_source_id(l_tile) == -1:
 				if t_empty:
-					set_cell(l_tile, 1, Vector2i(0,6))
+					set_cell(l_tile, source_id, Vector2i(0,0))
 				else:
-					set_cell(l_tile, 1, Vector2i(0,7))
+					set_cell(l_tile, source_id, Vector2i(0,1))
 			else:
-				set_cell(l_tile, 1, Vector2i(1,7))
+				set_cell(l_tile, source_id, Vector2i(1,1))
 		if b_empty:
 			if get_cell_source_id(b_tile) == -1:
 				if r_empty:
-					set_cell(b_tile, 1, Vector2i(2,8))	
+					set_cell(b_tile, source_id, Vector2i(2,2))	
 				else:
-					set_cell(b_tile, 1, Vector2i(1,8))	
+					set_cell(b_tile, source_id, Vector2i(1,2))	
 			else:
-				set_cell(b_tile, 1, Vector2i(1,7))
+				set_cell(b_tile, source_id, Vector2i(1,1))
 		if wall_layer.get_cell_source_id(lb_tile) == -1 and l_empty and b_empty:
-			set_cell(lb_tile, 1, Vector2i(0,8))
+			set_cell(lb_tile, source_id, Vector2i(0,2))

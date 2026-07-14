@@ -1,0 +1,44 @@
+[gd_scene format=4 uid="uid://odpt6lah27fw"]
+
+[ext_resource type="PackedScene" uid="uid://ddrlmt2acvxok" path="res://worlds/base_world.tscn" id="1_dyqu7"]
+[ext_resource type="PackedScene" uid="uid://gmc4khhpncru" path="res://domain/entity/mechanism/level_finish_point.tscn" id="2_fdno1"]
+[ext_resource type="PackedScene" uid="uid://ge42d0tdcqqo" path="res://domain/entity/enemy/coyote.tscn" id="3_roobd"]
+[ext_resource type="PackedScene" uid="uid://b88h26t1a3ogf" path="res://domain/entity/character/character_1.tscn" id="5_427rn"]
+[ext_resource type="PackedScene" uid="uid://bkdq0j4g81wax" path="res://domain/entity/character/character_5.tscn" id="5_677yn"]
+[ext_resource type="PackedScene" uid="uid://bumfm7xfd5hwq" path="res://domain/entity/mechanism/door.tscn" id="7_k8f1t"]
+[ext_resource type="PackedScene" uid="uid://ceyxearq1tjj5" path="res://domain/entity/mechanism/pressure_plate.tscn" id="9_dfpe3"]
+
+[node name="WorldLevel004" unique_id=1191664350 instance=ExtResource("1_dyqu7")]
+
+[node name="GroundTileMapLayer" parent="TileMapManager" parent_id_path=PackedInt32Array(432579976) index="0" unique_id=1065113669]
+tile_map_data = PackedByteArray("AAAAAAAAAwABAAAAAAAAAAEAAwABAAAAAAAAAAIAAwABAAAAAAAAAAMAAwABAAAAAAAAAAQAAwABAAAAAAAAAAUAAwABAAAAAAAAAAYAAwABAAAAAAAAAAcAAwABAAAAAAAAAAgAAwABAAAAAAAAAAkAAwABAAAAAAABAAAAAwABAAAAAAABAAEAAwABAAAAAAABAAIAAwABAAAAAAABAAMAAwABAAAAAAABAAQAAwABAAAAAAABAAUAAwABAAAAAAABAAYAAwABAAAAAAABAAcAAwABAAAAAAABAAgAAwABAAAAAAABAAkAAwABAAAAAAACAAAAAwABAAAAAAACAAEAAwABAAAAAAACAAIAAwABAAAAAAACAAMAAwABAAAAAAACAAQAAwABAAAAAAACAAUAAwABAAAAAAACAAYAAwABAAAAAAACAAcAAwABAAAAAAACAAgAAwABAAAAAAACAAkAAwABAAAAAAADAAAAAwABAAAAAAADAAEAAwABAAAAAAADAAIAAwABAAAAAAADAAMAAwABAAAAAAADAAQAAwABAAAAAAADAAUAAwABAAAAAAADAAYAAwABAAAAAAADAAcAAwABAAAAAAADAAgAAwABAAAAAAADAAkAAwABAAAAAAAEAAAAAwABAAAAAAAEAAEAAwABAAAAAAAEAAIAAwABAAAAAAAEAAMAAwABAAAAAAAEAAQAAwABAAAAAAAEAAUAAwABAAAAAAAEAAYAAwABAAAAAAAEAAcAAwABAAAAAAAEAAgAAwABAAAAAAAEAAkAAwABAAAAAAAFAAAAAwABAAAAAAAFAAEAAwABAAAAAAAFAAIAAwABAAAAAAAFAAMAAwABAAAAAAAFAAQAAwABAAAAAAAFAAUAAwABAAAAAAAFAAYAAwABAAAAAAAFAAcAAwABAAAAAAAFAAgAAwABAAAAAAAFAAkAAwABAAAAAAAGAAAAAwABAAAAAAAGAAEAAwABAAAAAAAGAAIAAwABAAAAAAAGAAMAAwABAAAAAAAGAAQAAwABAAAAAAAGAAUAAwABAAAAAAAGAAYAAwABAAAAAAAGAAcAAwABAAAAAAAGAAgAAwABAAAAAAAGAAkAAwABAAAAAAAHAAAAAwABAAAAAAAHAAEAAwABAAAAAAAHAAIAAwABAAAAAAAHAAMAAwABAAAAAAAHAAQAAwABAAAAAAAHAAUAAwABAAAAAAAHAAYAAwABAAAAAAAHAAcAAwABAAAAAAAHAAgAAwABAAAAAAAHAAkAAwABAAAAAAAIAAAAAwABAAAAAAAIAAEAAwABAAAAAAAIAAIAAwABAAAAAAAIAAMAAwABAAAAAAAIAAQAAwABAAAAAAAIAAUAAwABAAAAAAAIAAYAAwABAAAAAAAIAAcAAwABAAAAAAAIAAgAAwABAAAAAAAIAAkAAwABAAAAAAAJAAAAAwABAAAAAAAJAAEAAwABAAAAAAAJAAIAAwABAAAAAAAJAAMAAwABAAAAAAAJAAQAAwABAAAAAAAJAAUAAwABAAAAAAAJAAYAAwABAAAAAAAJAAcAAwABAAAAAAAJAAgAAwABAAAAAAAJAAkAAwABAAAAAAA=")
+
+[node name="WallTileMapLayer" parent="TileMapManager" parent_id_path=PackedInt32Array(432579976) index="1" unique_id=845189614]
+tile_map_data = PackedByteArray("AAAAAAIABQAAAAEAAAAAAAMABQAAAAEAAAAAAAQABQAAAAEAAAAAAAUABQAAAAEAAAAAAAYABQAAAAEAAAABAAYABQAAAAEAAAACAAYABQAAAAEAAAADAAYABQAAAAEAAAAEAAYABQAAAAEAAAAFAAYABQAAAAEAAAAGAAYABQAAAAEAAAAHAAYABQAAAAEAAAAIAAYABQAAAAEAAAAJAAYABQAAAAEAAAABAAIABQAAAAEAAAACAAIABQAAAAEAAAADAAIABQAAAAEAAAAEAAIABQAAAAEAAAAFAAIABQAAAAEAAAAGAAIABQAAAAEAAAAHAAIABQAAAAEAAAAIAAIABQAAAAEAAAAJAAIABQAAAAEAAAAKAAIABQAAAAEAAAAKAAMABQAAAAEAAAAKAAQABQAAAAEAAAAKAAUABQAAAAEAAAAKAAYABQAAAAEAAAAIAAMABQAAAAEAAAAIAAUABQAAAAEAAAA=")
+
+[node name="LevelFinishPoint" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="0" unique_id=1969265763 instance=ExtResource("2_fdno1")]
+position = Vector2(288, 96)
+
+[node name="LevelFinishPoint2" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="1" unique_id=2067703838 instance=ExtResource("2_fdno1")]
+position = Vector2(288, 160)
+
+[node name="CoyoteEnemy" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="2" unique_id=71826711 instance=ExtResource("3_roobd")]
+position = Vector2(64, 160)
+
+[node name="CoyoteEnemy2" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="3" unique_id=2137060348 instance=ExtResource("3_roobd")]
+position = Vector2(64, 96)
+
+[node name="Character1" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="4" unique_id=1901295413 instance=ExtResource("5_427rn")]
+position = Vector2(192, 96)
+
+[node name="Character5" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="5" unique_id=2062783742 instance=ExtResource("5_677yn")]
+position = Vector2(192, 160)
+
+[node name="Door" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="6" unique_id=1682633432 instance=ExtResource("7_k8f1t")]
+position = Vector2(256, 128)
+
+[node name="PressurePlate" parent="EntityManager/Door" index="2" unique_id=1665826071 instance=ExtResource("9_dfpe3")]
+position = Vector2(-96, -32)
+
+[node name="PressurePlate2" parent="EntityManager/Door" index="3" unique_id=2110652148 instance=ExtResource("9_dfpe3")]
+position = Vector2(-96, 32)

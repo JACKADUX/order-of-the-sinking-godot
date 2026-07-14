@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://domain/components/health.gd" id="6_nqjes"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v0eb"]
+resource_local_to_scene = true
 atlas = ExtResource("2_ihsie")
 region = Rect2(0, 160, 32, 32)
 script = ExtResource("3_hofmj")

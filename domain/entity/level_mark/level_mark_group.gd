@@ -1,0 +1,1 @@
+class_name LevelMarkGroup extends Node2D

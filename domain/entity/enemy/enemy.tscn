@@ -6,6 +6,12 @@
 [ext_resource type="Script" uid="uid://34l10k1vdopw" path="res://domain/components/obstacle.gd" id="3_j14xv"]
 [ext_resource type="Script" uid="uid://bqr5hujuxeivx" path="res://domain/components/health.gd" id="4_7mx5f"]
 [ext_resource type="Script" uid="uid://bxjib3hd2rsas" path="res://domain/components/creature.gd" id="5_gevl6"]
+[ext_resource type="Texture2D" uid="uid://d23hul0yusoa5" path="res://assets/pixel_art_master/Sprite-0001.png" id="7_5ypop"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k4bn"]
+resource_local_to_scene = true
+atlas = ExtResource("7_5ypop")
+region = Rect2(0, 128, 32, 32)
 
 [node name="Enemy" type="Node2D" unique_id=1323273176]
 script = ExtResource("1_5k4bn")
@@ -35,3 +41,10 @@ metadata/_custom_type_script = "uid://bxjib3hd2rsas"
 unique_name_in_owner = true
 position = Vector2(0, -6)
 centered = false
+
+[node name="Crystal" type="Sprite2D" parent="." unique_id=2060618027]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.828125, 0.23937988, 0.69473743, 1)
+position = Vector2(16, 5)
+texture = SubResource("AtlasTexture_5k4bn")

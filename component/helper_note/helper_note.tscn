@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cbnxjm8eaawrh"]
+
+[ext_resource type="Script" uid="uid://id684leqvcqx" path="res://component/helper_note/helper_note.gd" id="1_qhhia"]
+
+[node name="HelperNote" type="PanelContainer" unique_id=1247274011]
+script = ExtResource("1_qhhia")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1406527807]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=585700638]
+layout_mode = 2
+
+[node name="KeyLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=2094449595]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TooltipLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1786254015]
+unique_name_in_owner = true
+layout_mode = 2
+text = "tooltip"

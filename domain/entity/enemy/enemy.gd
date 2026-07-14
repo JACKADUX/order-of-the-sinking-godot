@@ -2,6 +2,7 @@ class_name Enemy extends Entity
 
 
 @onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var crystal: Sprite2D = %Crystal
 
 func _enter_tree() -> void:
 	super()
@@ -15,7 +16,7 @@ func update_with(component:Component, _key:="", tween:Tween=null):
 	super(component, _key, tween)
 	if component is Creature:
 		var crystalize = component.is_crystalized()
-		#sprite_2d.texture.y = 4 if crystalize else 6
-
+		crystal.visible = crystalize
+		sprite_2d.visible = not crystalize
 func check_battle(battle_service:BattleService):
 	pass
