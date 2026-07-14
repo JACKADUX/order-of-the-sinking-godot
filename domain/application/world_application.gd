@@ -1,5 +1,7 @@
 class_name WorldApplication extends Application
 
+signal system_initialize
+
 @export var active_character_index :int= 1
 
 var undo_service : UndoService
@@ -15,13 +17,37 @@ var tilemap_manager : TileMapManager
 var entity_manager : EntityManager
 var level_manager : LevelManager
 
+
+var is_level := false
+
 func debug_info():
 	DebugLabel.set_value("Character", active_character_index)
 	DebugLabel.set_value("history_count", undo_service.get_history_count())
 
+func get_data()->Dictionary:
+	return {
+		"undo_data":undo_service.get_data(),
+		"level_data":level_manager.get_data() if level_manager else {},
+		"is_level":is_level,
+	}
+
+func set_data(data:Dictionary):
+	undo_service.set_data(data.get("undo_data", {}))
+	if level_manager:
+		level_manager.set_data(data.get("level_data", {}))
+	is_level = data.get("is_level", false)
+
+func apply_data(data:Dictionary):
+	if not data:
+		return 
+	set_data(data)
+	undo_service.apply_datas(undo_service.undo_datas.pop_back())
+	undo_service.notify_changed(true)
+	
 func _ready() -> void:
 	if not get_tree().root.is_node_ready():
 		await get_tree().root.ready
+	GameManager.application = self
 	init_managers()
 	init_services()
 	init_system.call_deferred()
@@ -62,10 +88,14 @@ func init_system():
 	switch_character(entity_manager.get_valid_character_index(active_character_index))
 	undo_service.reset()
 	handle_event(Events.DataChangedEvent.new())
+	system_initialize.emit()
 
 func handle_event(event:BaseEvent):
 	if event is Events.UserInputEvent:
 		handle_user_input_event(event.action, event.data)
+		return 
+	if event is Events.LevelFinishedEvent:
+		exit_level(owner.scene_file_path, true)
 		return 
 	entity_manager.propagate_event_to_entity(event)
 
@@ -73,8 +103,8 @@ func update_services():
 	entity_manager.update_coords_entity_cache()
 	zdepth_service.update()
 	buff_service.update()
-	mechanism_service.update()
 	battle_service.update()
+	mechanism_service.update()
 	
 	
 ## User Inputs ----
@@ -92,6 +122,9 @@ func handle_user_input_event(action:String, data:={}):
 			apply_action()
 		Const.IM_ENTER_LEVEL:
 			enter_level()
+		
+			
+			
 
 func switch_character(character_index:int):
 	entity_manager.update_coords_entity_cache()
@@ -141,5 +174,12 @@ func enter_level():
 	var level_mark := level_manager.get_level_mark_at(character.get_coords())
 	if not level_mark:
 		return 
-	get_tree().change_scene_to_packed(level_mark.level_scene)
+	GameManager.enter_world(level_mark.level_scene, true)
+
+func exit_level(scene_path:String, finished:bool):
+	if not is_level:
+		return 
+	input_manager.enable = false
+	await get_tree().create_timer(0.5).timeout
+	GameManager.exit_level(scene_path, finished)
 	

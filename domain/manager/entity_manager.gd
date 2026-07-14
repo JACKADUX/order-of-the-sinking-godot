@@ -179,6 +179,12 @@ func get_valid_character_index(index:int) -> int:
 		return index
 	return indexs.pop_front()
 
+func any_character_dead() -> bool:
+	for character in get_tree().get_nodes_in_group(Const.GROUP_CHARACTER):
+		if character.is_dead():
+			return true
+	return false
+
 ## Helper
 @export_tool_button("Add Entity") var __add__ :Callable = __add_entity__
 func __add_entity__():

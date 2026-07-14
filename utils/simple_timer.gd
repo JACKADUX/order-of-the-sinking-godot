@@ -1,13 +1,13 @@
 class_name SimpleTimer
 
-var _timer := 0
-func clear():
-	_timer = 0
+var _time :float= 0
 
-func check_timeout(timeout:float=1) -> bool:
-	var current_time = Engine.get_process_frames()
-	var fps = Engine.get_frames_per_second()*timeout
-	if current_time-_timer < fps:
-		return false
-	_timer = current_time
-	return true
+func clear():
+	_time = 0
+
+func check_timeout(delta:float, timeout:float=1) -> bool:
+	_time += delta
+	if _time >= timeout:
+		_time = 0
+		return true
+	return false

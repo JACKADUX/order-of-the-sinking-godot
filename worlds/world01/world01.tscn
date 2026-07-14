@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://caklk028v5vpf" path="res://domain/entity/items/rock.tscn" id="4_k4ivw"]
 [ext_resource type="PackedScene" uid="uid://3m288i4tk5oq" path="res://worlds/levels/world_level_001.tscn" id="4_y557r"]
 [ext_resource type="Script" uid="uid://y70pckfpy64c" path="res://domain/manager/level_manager.gd" id="5_k4ivw"]
+[ext_resource type="PackedScene" uid="uid://bvkq1xv7k4aya" path="res://worlds/test_world/test_world_03.tscn" id="6_xylww"]
 [ext_resource type="PackedScene" uid="uid://cytd84r2k05qv" path="res://worlds/test_world/test_world_04.tscn" id="8_nnpfo"]
 
 [node name="World01" unique_id=1191664350 instance=ExtResource("1_voxt0")]
@@ -26,16 +27,16 @@ metadata/_custom_type_script = "uid://y70pckfpy64c"
 metadata/_edit_lock_ = true
 
 [node name="LevelMark" parent="LevelManager" index="0" unique_id=1947059319 instance=ExtResource("3_iobnw")]
-position = Vector2(96, 32)
+position = Vector2(192, 192)
 level_scene = ExtResource("4_y557r")
 
 [node name="LevelMark2" parent="LevelManager" index="1" unique_id=1086600167 instance=ExtResource("3_iobnw")]
-position = Vector2(128, 32)
+position = Vector2(224, 192)
 level_scene = ExtResource("8_nnpfo")
 
 [node name="LevelMark3" parent="LevelManager" index="2" unique_id=1104636621 instance=ExtResource("3_iobnw")]
-position = Vector2(160, 32)
-level_scene = ExtResource("8_nnpfo")
+position = Vector2(256, 192)
+level_scene = ExtResource("6_xylww")
 
 [node name="Door" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="0" unique_id=1682633432 instance=ExtResource("2_uivb6")]
 position = Vector2(288, 160)
@@ -47,4 +48,4 @@ position = Vector2(128, 96)
 position = Vector2(64, 160)
 
 [node name="Character0" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="3" unique_id=1901295413 instance=ExtResource("3_3cj04")]
-position = Vector2(32, 32)
+position = Vector2(128, 256)

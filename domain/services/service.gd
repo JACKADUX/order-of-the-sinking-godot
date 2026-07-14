@@ -14,3 +14,9 @@ func update() -> void:
 
 func raise_event(event:BaseEvent) -> void:
 	event_rasied.emit(event)
+
+func get_data() -> Dictionary:
+	return {}
+	
+func set_data(data:Dictionary):
+	pass

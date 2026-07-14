@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://08jwjcj2tn1a" path="res://component/frame_texture.gd" id="3_musqj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvhbo"]
+resource_local_to_scene = true
 atlas = ExtResource("2_i4vur")
 region = Rect2(0, 96, 32, 32)
 script = ExtResource("3_musqj")

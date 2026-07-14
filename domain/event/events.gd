@@ -31,3 +31,7 @@ class DataChangedEvent extends BaseEvent:
 	const K_IMMEDIATE := "immediate"
 	static func get_event_name() -> String:
 		return "DataChangedEvent"
+
+class LevelFinishedEvent extends BaseEvent:
+	static func get_event_name() -> String:
+		return "LevelFinishedEvent"

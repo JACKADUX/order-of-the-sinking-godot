@@ -4,7 +4,8 @@ func update():
 	trigger_check()
 	actuator_check()
 	door_smash_check()
-						
+	level_finish_check()
+	
 func trigger_check():
 	for trigger : MechanismTrigger in entity_manager.get_triggers():
 		trigger.check_mechanism(self)
@@ -33,10 +34,26 @@ func door_smash_check():
 		raise_event(Events.CharacterDeadEvent.new())
 	raise_event(Events.DataChangedEvent.new())
 
+func level_finish_check():
+	var counter = 0
+	for trigger :MechanismTrigger in entity_manager.get_triggers():
+		if trigger is not LevelFinishPoint:
+			continue
+		if not trigger.is_activated():
+			return
+		var character = entity_manager.get_character_at(trigger.get_coords())
+		if not character or character.is_dead():
+			return 
+		counter += 1
+	if counter <= 0:
+		return 
+	raise_event(Events.LevelFinishedEvent.new())
+		
 
 ## Trigger
 func entity_above(coords:Vector2i) -> bool:
-	return entity_manager.get_entity_at(coords) != null
+	var entity = entity_manager.get_entity_at(coords)
+	return entity and not entity_manager.is_dead(entity)
 
 func enemy_all_dead() -> bool:
 	return entity_manager.get_enemies().size() == 0

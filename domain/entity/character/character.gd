@@ -32,3 +32,6 @@ func update_with(component:Component, _key:="", tween:Tween=null):
 		var crystalize = component.is_crystalized()
 		#sprite_2d.texture.y = 4 if crystalize else 7
 	
+func is_dead() -> bool:
+	var health :Health= get_component(Health)
+	return false if not health else health.is_dead()

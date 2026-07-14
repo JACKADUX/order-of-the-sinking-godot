@@ -2,6 +2,15 @@ class_name UndoService extends Service
 
 var undo_datas := []
 
+func get_data() -> Dictionary:
+	add_undo(collect_datas()) # NOTE: 退出前的状态也要保留
+	return {
+		"undo_datas":undo_datas,
+	}
+	
+func set_data(data:Dictionary):
+	undo_datas = data.get("undo_datas", [])
+
 func clear():
 	undo_datas.clear()
 
@@ -22,13 +31,32 @@ func collect_datas() -> Array:
 		datas.append(item.get_data())
 	return datas
 
-func apply_datas(datas:Array):
+func apply_datas(datas:Array): 
+	# 复用数据
+	var quick_data = {}
+	for entity :Entity in entity_manager.get_all_entities():
+		var type_entities = quick_data.get_or_add(entity.scene_file_path, [])
+		type_entities.append(entity)
+	
+	# 如果不存在就创建
 	for data in datas:
-		var item = instance_from_id(data.iid)
-		if not item:
-			printerr("数据不应该丢失")
+		var scene_file_path = data.get("scene_file_path","")
+		if not scene_file_path:
+			print("warning: undoredo service::scene_file_path 中 scene_file_path 属性缺失而跳过")
 			continue
-		item.set_data(data)
+		var type_entities = quick_data.get(scene_file_path)
+		var entity:Entity
+		if not type_entities:
+			entity = load(scene_file_path).instantiate()
+			entity_manager.add_child(entity)
+		else:
+			entity = type_entities.pop_back()
+		entity.set_data(data)
+	
+	# 移除多余的对象
+	for type_entities in quick_data.values():
+		for entity in type_entities:
+			entity.queue_free()
 
 func get_history_count() -> int:
 	return undo_datas.size()

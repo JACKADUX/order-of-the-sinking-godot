@@ -1,21 +1,9 @@
 [gd_scene format=3 uid="uid://7xkq0uujccds"]
 
-[ext_resource type="PackedScene" uid="uid://ced4p50fll4id" path="res://component/dialog_window/dialog_comtainer.tscn" id="1_itxqv"]
+[ext_resource type="PackedScene" uid="uid://bphjjrjos5oga" path="res://scene/main_menu.tscn" id="1_itxqv"]
 
 [node name="Main" type="Node" unique_id=1080746718]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=46696466]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=1895093443]
-layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -80.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="DialogComtainer" parent="CanvasLayer/Control" unique_id=2070753661 instance=ExtResource("1_itxqv")]
-layout_mode = 1
-offset_bottom = 0.0
+[node name="MainMenu" parent="CanvasLayer" unique_id=51063730 instance=ExtResource("1_itxqv")]

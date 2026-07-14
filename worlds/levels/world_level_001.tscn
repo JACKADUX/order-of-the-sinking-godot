@@ -23,4 +23,4 @@ position = Vector2(192, 96)
 position = Vector2(256, 128)
 
 [node name="Character1" parent="EntityManager" parent_id_path=PackedInt32Array(498805642) index="3" unique_id=1901295413 instance=ExtResource("2_m374o")]
-position = Vector2(32, 128)
+position = Vector2(224, 128)

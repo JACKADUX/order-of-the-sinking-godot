@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="Order of the Sinking Star"
-run/main_scene="res://worlds/world01/world01.tscn"
+run/main_scene="uid://3m288i4tk5oq"
+config/auto_accept_quit=false
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -19,6 +21,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DebugLabel="*uid://bryxfyry3o6hn"
+GameManager="*uid://cimqvhncdt53d"
 
 [display]
 

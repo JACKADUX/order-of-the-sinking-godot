@@ -28,6 +28,7 @@ metadata/_custom_type_script = "uid://gc6aow4ry1an"
 
 [node name="Activate" type="Node" parent="ComponentManager" unique_id=1058795562]
 script = ExtResource("4_tv4n7")
+activate = true
 metadata/_custom_type_script = "uid://igmj3iy5y6vo"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=917920921]

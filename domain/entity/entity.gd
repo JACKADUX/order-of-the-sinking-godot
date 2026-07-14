@@ -5,7 +5,8 @@ class_name Entity extends Node2D
 @export var direction:=Const.Direction.RIGHT
 @export var component_manager:ComponentManager
 
-var _id := UUID.v4()
+var _id := UUID.v4() # NOTE: id 目前没啥用
+
 
 func _enter_tree() -> void:
 	add_to_group(Const.GROUP_ENTITY)
@@ -27,6 +28,9 @@ func _ready() -> void:
 func get_id() -> String:
 	return _id
 
+func get_type_name() -> String:
+	return get_script().get_global_name()
+	
 func has_component(script:GDScript) -> bool:
 	return component_manager.has_component(script) if component_manager else false
 
@@ -37,13 +41,11 @@ func get_component(script:GDScript) -> Component:
 
 func get_data() -> Dictionary:
 	return {
-		"iid":get_instance_id(),
-		"id":get_id(),
+		"scene_file_path":scene_file_path,
 		"component_data": component_manager.get_data()
 	}
 
 func set_data(data:Dictionary):
-	_id = data.get("id", _id)
 	component_manager.set_data(data.get("component_data", {}))
 
 func get_coords() -> Vector2i:
